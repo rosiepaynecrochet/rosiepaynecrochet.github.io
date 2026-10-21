@@ -4,17 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<!-- ============================================================
-     PINTEREST SITE VERIFICATION
-     Replace PASTE_YOUR_CODE_HERE with the code Pinterest gives you
-     at Settings > Claimed accounts > Claim website > Add HTML tag.
-     ============================================================ -->
 <meta name="p:domain_verify" content="af0567b0329eaeff9bea56c7104d49d6">
 
-<!-- ============================================================
-     RICH PINS - Article type (Open Graph)
-     Update og:url once your site address is live.
-     ============================================================ -->
+<!-- Rich Pins - Article type (Open Graph) -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Small Project Sizing Chart">
 <meta property="og:description" content="Finished measurements for the crochet projects people make most, plus the gauge math that turns each one into your own stitch and row count.">
@@ -22,11 +14,11 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://rosiepaynecrochet.com/">
 <meta property="og:image" content="https://rosiepaynecrochet.com/cover.jpg">
-<meta property="og:image:width" content="520">
-<meta property="og:image:height" content="780">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="1200">
 <meta property="og:image:alt" content="Cover of Crazy Crochet Hacks Every Beginner Wishes They Knew by Rosie Payne">
 <meta property="article:author" content="Rosie Payne">
-<meta property="article:published_time" content="2026-10-20">
+<meta property="article:published_time" content="2026-10-21">
 
 <meta name="description" content="Finished measurements for the crochet projects people make most, plus the gauge math that turns each one into your own stitch and row count.">
 <meta name="author" content="Rosie Payne">
@@ -35,448 +27,25 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23b2502c'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23faf6f0' stroke-width='2'/%3E%3Cpath d='M16 9v14' stroke='%23faf6f0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>Small Project Sizing Chart</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-
-<style>
-  /* Layout: single reading column, reference-card feel. The chart is the hero;
-     the book offer sits after the value is delivered, never before it. */
-  :root {
-    --paper:      #faf6f0;
-    --paper-sunk: #f2ebe1;
-    --ink:        #2a211c;
-    --ink-soft:   #6f6054;
-    --rule:       #e2d8ca;
-    --clay:       #b2502c;
-    --sage:       #6c7d66;
-
-    --display: "Newsreader", Georgia, "Times New Roman", serif;
-    --body:    "Karla", "Helvetica Neue", Arial, sans-serif;
-    --figure:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper:      #1b1613;
-      --paper-sunk: #241d19;
-      --ink:        #ece2d6;
-      --ink-soft:   #a39385;
-      --rule:       #3a302a;
-      --clay:       #d97c52;
-      --sage:       #93a48c;
-      color-scheme: dark;
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --paper:      #1b1613;
-    --paper-sunk: #241d19;
-    --ink:        #ece2d6;
-    --ink-soft:   #a39385;
-    --rule:       #3a302a;
-    --clay:       #d97c52;
-    --sage:       #93a48c;
-    color-scheme: dark;
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--body);
-    font-size: 1rem;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .wrap {
-    max-width: 44rem;
-    margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 2.75rem 3.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  /* ---------- header ---------- */
-
-  .masthead { display: flex; flex-direction: column; gap: 0.85rem; }
-
-  .eyebrow {
-    font-family: var(--body);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--clay);
-  }
-
-  h1 {
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: clamp(2rem, 7vw, 2.9rem);
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  .standfirst {
-    font-family: var(--display);
-    font-size: clamp(1.05rem, 3.2vw, 1.2rem);
-    line-height: 1.55;
-    color: var(--ink-soft);
-    margin: 0;
-    max-width: 34rem;
-  }
-
-  /* ---------- sections ---------- */
-
-  section { display: flex; flex-direction: column; gap: 1.1rem; }
-
-  h2 {
-    font-family: var(--display);
-    font-weight: 600;
-    font-size: clamp(1.3rem, 4.5vw, 1.6rem);
-    line-height: 1.2;
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  h3 {
-    font-family: var(--body);
-    font-weight: 700;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0;
-  }
-
-  p { margin: 0; max-width: 36rem; }
-
-  .divider { border: 0; border-top: 1px solid var(--rule); margin: 0; }
-
-  /* ---------- gauge formula ---------- */
-
-  .gauge {
-    background: var(--paper-sunk);
-    border-left: 3px solid var(--clay);
-    padding: 1.4rem 1.3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .steps {
-    margin: 0;
-    padding-left: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .steps li { padding-left: 0.2rem; }
-
-  .eq {
-    font-family: var(--figure);
-    font-size: 0.86rem;
-    line-height: 1.7;
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    padding: 0.9rem 1rem;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  .eq span { color: var(--clay); }
-
-  /* ---------- chart ---------- */
-
-  .scroller { overflow-x: auto; border-block: 1px solid var(--rule); }
-
-  table {
-    width: 100%;
-    min-width: 32rem;
-    border-collapse: collapse;
-    font-size: 0.93rem;
-  }
-
-  caption { text-align: left; padding-bottom: 0.7rem; color: var(--ink-soft); font-size: 0.88rem; }
-
-  th {
-    text-align: left;
-    font-family: var(--body);
-    font-weight: 700;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    padding: 0.75rem 0.9rem 0.75rem 0;
-    border-bottom: 1px solid var(--rule);
-    vertical-align: bottom;
-  }
-
-  td {
-    padding: 0.8rem 0.9rem 0.8rem 0;
-    border-bottom: 1px solid var(--rule);
-    vertical-align: top;
-  }
-
-  tbody tr:last-child td { border-bottom: 0; }
-
-  td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.2rem; }
-
-  .size {
-    font-family: var(--figure);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-    padding-right: 1.2rem;
-  }
-
-  .note { color: var(--ink-soft); font-size: 0.88rem; min-width: 0; }
-
-  /* ---------- formula rules ---------- */
-
-  .rules {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-    gap: 1.5rem 2rem;
-  }
-
-  .rule-item { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
-
-  .rule-item .num {
-    font-family: var(--figure);
-    font-variant-numeric: tabular-nums;
-    font-size: 1.05rem;
-    color: var(--clay);
-  }
-
-  .rule-item p { font-size: 0.9rem; color: var(--ink-soft); }
-
-  /* ---------- worked example ---------- */
-
-  .example {
-    border: 1px solid var(--rule);
-    padding: 1.3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .example .eq { background: var(--paper-sunk); }
-
-  /* ---------- book ---------- */
-
-  /* ---------- author note ---------- */
-
-  .why {
-    background: var(--paper-sunk);
-    padding: 1.6rem 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-
-  .why p { font-family: var(--display); font-size: 1.02rem; line-height: 1.6; }
-
-  .signoff {
-    font-family: var(--body);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--clay);
-  }
-
-  /* ---------- book ---------- */
-
-  .book { border-top: 2px solid var(--ink); padding-top: 2rem; }
-
-  .book-body {
-    display: grid;
-    grid-template-columns: 13rem 1fr;
-    gap: 1.8rem;
-    align-items: start;
-  }
-
-  @media (max-width: 34rem) {
-    .book-body { grid-template-columns: 1fr; gap: 1.4rem; }
-    .cover { max-width: 11rem; }
-  }
-
-  .cover {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid var(--rule);
-    box-shadow: 0 10px 24px -14px rgba(42, 33, 28, 0.55);
-  }
-
-  .book-copy { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
-
-  .formats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-    gap: 1rem;
-    margin-top: 0.3rem;
-  }
-
-  .format {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    padding: 1.2rem;
-    background: var(--paper-sunk);
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid transparent;
-    transition: border-color 140ms ease, transform 140ms ease;
-    min-width: 0;
-  }
-
-  .format:hover, .format:focus-visible { border-color: var(--clay); transform: translateY(-2px); }
-
-  .format .kind {
-    font-family: var(--body);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
-    color: var(--sage);
-  }
-
-  .format .name { font-family: var(--display); font-size: 1.15rem; font-weight: 500; line-height: 1.25; }
-
-  .format .go { font-size: 0.86rem; color: var(--clay); font-weight: 500; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .format { transition: none; }
-    .format:hover, .format:focus-visible { transform: none; }
-  }
-
-  :focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
-
-  /* ---------- footer ---------- */
-
-  footer {
-    border-top: 1px solid var(--rule);
-    padding-top: 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    font-size: 0.82rem;
-    color: var(--ink-soft);
-  }
-
-  footer p { max-width: 38rem; }
-
-  .series {
-    font-size: 0.86rem;
-    color: var(--ink-soft);
-    padding-top: 0.4rem;
-    border-top: 1px solid var(--rule);
-    margin-top: 0.3rem;
-  }
-
-  /* ---------- book two: secondary weight, deliberately quieter than book one ---------- */
-
-  .next {
-    border-top: 1px solid var(--rule);
-    padding-top: 1.6rem;
-    display: grid;
-    grid-template-columns: 6.5rem 1fr;
-    gap: 1.2rem;
-    align-items: start;
-  }
-
-  .next img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid var(--rule);
-    box-shadow: 0 6px 16px -10px rgba(42, 33, 28, 0.5);
-  }
-
-  .next-copy { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
-
-  .next-copy .label {
-    font-family: var(--body);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
-    color: var(--sage);
-  }
-
-  .next-copy .t {
-    font-family: var(--display);
-    font-size: 1.05rem;
-    font-weight: 500;
-    line-height: 1.3;
-  }
-
-  .next-copy p { font-size: 0.9rem; color: var(--ink-soft); }
-
-  .next-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; margin-top: 0.15rem; }
-
-  .next-links a { color: var(--clay); font-weight: 500; font-size: 0.88rem; text-decoration: none; }
-  .next-links a:hover { text-decoration: underline; }
-
-  @media (max-width: 30rem) {
-    .next { grid-template-columns: 5rem 1fr; gap: 1rem; }
-  }
-
-  /* ---------- print: this is a reference chart, people will want it on paper ---------- */
-
-  @media print {
-    :root {
-      --paper: #fff;
-      --paper-sunk: #fff;
-      --ink: #000;
-      --ink-soft: #333;
-      --rule: #bbb;
-      --clay: #000;
-      --sage: #333;
-    }
-    .wrap { max-width: none; padding-block: 0; gap: 1.4rem; }
-    .book, .why, .no-print { display: none; }
-    .scroller { overflow: visible; border: 0; }
-    table { min-width: 0; font-size: 10pt; }
-    .gauge { border-left: 2px solid #000; }
-    h1 { font-size: 20pt; }
-    section { break-inside: avoid; }
-    tr { break-inside: avoid; }
-  }
-
-  .chart-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .print-btn {
-    font-family: var(--body);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--clay);
-    background: none;
-    border: 1px solid var(--rule);
-    padding: 0.45rem 0.8rem;
-    cursor: pointer;
-  }
-  .print-btn:hover { border-color: var(--clay); }
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="wrap">
+
+  <nav class="sitenav no-print" aria-label="Main">
+    <a class="brand" href="/">Rosie Payne</a>
+    <ul>
+      <li><a href="/" aria-current="page">Sizing chart</a></li>
+      <li><a href="/hook-sizes/">Hook sizes</a></li>
+      <li><a href="/crochet-terms/">US vs UK terms</a></li>
+      <li><a href="/yarn-weights/">Yarn weights</a></li>
+      <li><a href="/calculators/">Calculators</a></li>
+      <li><a href="/about/">About</a></li>
+    </ul>
+  </nav>
 
   <header class="masthead">
     <div class="eyebrow">Rosie Payne · Crochet Reference</div>
@@ -484,7 +53,7 @@
     <p class="standfirst">Finished measurements for the projects people make most — and the gauge math that turns each one into your own stitch and row count.</p>
   </header>
 
-  <section class="gauge">
+<section class="gauge">
     <h3>Start here — every number below depends on this</h3>
     <p>A finished measurement is useless on its own. Your gauge is what converts inches into stitches, and it is personal to your hands, hook and yarn.</p>
     <ol class="steps">
@@ -616,10 +185,28 @@
     <div class="signoff">Rosie Payne</div>
   </section>
 
-  <section class="book">
+  <section class="related no-print">
+    <h2>More reference charts</h2>
+    <div class="related-grid">
+      <a href="/hook-sizes/">
+        <span class="t">Hook sizes</span>
+        <span class="d">US letters, UK numbers and millimetres, plus the yarn weight each hook suits.</span>
+      </a>
+      <a href="/crochet-terms/">
+        <span class="t">US vs UK terms</span>
+        <span class="d">Translate any pattern, and spot which system it uses before you start.</span>
+      </a>
+      <a href="/yarn-weights/">
+        <span class="t">Yarn weights</span>
+        <span class="d">Weights 0–7 with hooks and gauge, plus how to substitute without ruining the fit.</span>
+      </a>
+    </div>
+  </section>
+
+<section class="book">
     <h2>Where the rest of it lives</h2>
     <div class="book-body">
-      <img class="cover" src="cover.jpg" width="520" height="780" alt="Cover of Crazy Crochet Hacks Every Beginner Wishes They Knew by Rosie Payne" loading="lazy">
+      <img class="cover" src="/cover.jpg" width="520" height="780" alt="Cover of Crazy Crochet Hacks Every Beginner Wishes They Knew by Rosie Payne" loading="lazy">
       <div class="book-copy">
         <p>This chart tells you what size to aim for. It doesn't tell you what to do when your gauge refuses to match the pattern no matter which hook you try, how to rescue a dropped stitch six rows down without frogging the lot, or why your foundation chain fights you every single time.</p>
         <p>That is what the book is for — 100+ fixes for the things that go wrong between casting on and finishing, including the full yardage and gauge tables these numbers were pulled from.</p>
@@ -640,7 +227,7 @@
     </div>
 
     <div class="next">
-      <img src="cover2.jpg" width="400" height="600" alt="Cover of Crazy Crochet Hacks 2 by Rosie Payne" loading="lazy">
+      <img src="/cover2.jpg" width="400" height="600" alt="Cover of Crazy Crochet Hacks 2 by Rosie Payne" loading="lazy">
       <div class="next-copy">
         <span class="label">Book 2 in the series</span>
         <span class="t">Even More Genius Fixes Every Beginner Wishes They Knew</span>
@@ -659,7 +246,12 @@
     <p>© Rosie Payne · Last checked October 2026</p>
   </footer>
 
-</div>
+  <footer>
+    <p>Every measurement here assumes you have checked your own gauge. Two crocheters working the same pattern with the same yarn will not get the same size, and the swatch is the only thing that tells you which one you are.</p>
+    <p>As an Amazon Associate I earn from qualifying purchases.</p>
+    <p>&copy; Rosie Payne &middot; Last checked October 2026 &middot; <a href="/about/">About these charts</a></p>
+  </footer>
 
+</div>
 </body>
 </html>

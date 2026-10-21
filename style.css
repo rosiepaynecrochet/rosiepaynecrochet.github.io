@@ -1,0 +1,692 @@
+/* ==========================================================================
+   Rosie Payne · Crochet Reference
+   Shared design system. One source of truth for every page.
+   Layout: single reading column, reference-card feel. The chart is the hero;
+   the book offer sits after the value is delivered, never before it.
+   ========================================================================== */
+
+:root {
+  --paper:      #faf6f0;
+  --paper-sunk: #f2ebe1;
+  --ink:        #2a211c;
+  --ink-soft:   #6f6054;
+  --rule:       #e2d8ca;
+  --clay:       #b2502c;
+  --sage:       #6c7d66;
+
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body:    "Karla", "Helvetica Neue", Arial, sans-serif;
+  --figure:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #1b1613;
+    --paper-sunk: #241d19;
+    --ink:        #ece2d6;
+    --ink-soft:   #a39385;
+    --rule:       #3a302a;
+    --clay:       #d97c52;
+    --sage:       #93a48c;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper:      #1b1613;
+  --paper-sunk: #241d19;
+  --ink:        #ece2d6;
+  --ink-soft:   #a39385;
+  --rule:       #3a302a;
+  --clay:       #d97c52;
+  --sage:       #93a48c;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 1.6rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ---------- site navigation ---------- */
+
+.sitenav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.4rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: -1.4rem;
+}
+
+.sitenav .brand {
+  font-family: var(--body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clay);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.sitenav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.2rem;
+}
+
+.sitenav a {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+
+.sitenav a:hover { color: var(--ink); border-bottom-color: var(--rule); }
+
+.sitenav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--clay);
+}
+
+/* ---------- header ---------- */
+
+.masthead { display: flex; flex-direction: column; gap: 0.85rem; }
+
+.eyebrow {
+  font-family: var(--body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+h1 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2rem, 7vw, 2.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.standfirst {
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 3.2vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 34rem;
+}
+
+/* ---------- sections ---------- */
+
+section { display: flex; flex-direction: column; gap: 1.1rem; }
+
+h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 4.5vw, 1.6rem);
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h3 {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+p { margin: 0; max-width: 36rem; }
+
+a { color: var(--clay); }
+
+.divider { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+ul.plain {
+  margin: 0;
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 36rem;
+}
+
+/* ---------- callout / gauge formula ---------- */
+
+.gauge {
+  background: var(--paper-sunk);
+  border-left: 3px solid var(--clay);
+  padding: 1.4rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.steps {
+  margin: 0;
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.steps li { padding-left: 0.2rem; }
+
+.eq {
+  font-family: var(--figure);
+  font-size: 0.86rem;
+  line-height: 1.7;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.eq span { color: var(--clay); }
+
+/* A warning callout: used where getting it wrong ruins the project. */
+.warn {
+  background: var(--paper-sunk);
+  border-left: 3px solid var(--sage);
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* ---------- tables ---------- */
+
+.scroller { overflow-x: auto; border-block: 1px solid var(--rule); }
+
+table {
+  width: 100%;
+  min-width: 32rem;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+caption { text-align: left; padding-bottom: 0.7rem; color: var(--ink-soft); font-size: 0.88rem; }
+
+th {
+  text-align: left;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 0.75rem 0.9rem 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: bottom;
+}
+
+td {
+  padding: 0.8rem 0.9rem 0.8rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+
+td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.2rem; }
+
+.size {
+  font-family: var(--figure);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-right: 1.2rem;
+}
+
+.note { color: var(--ink-soft); font-size: 0.88rem; min-width: 0; }
+
+/* A row the reader should linger on — the one that causes ruined projects. */
+tr.flag td { background: var(--paper-sunk); }
+
+/* ---------- key-number grid ---------- */
+
+.rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem 2rem;
+}
+
+.rule-item { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
+
+.rule-item .num {
+  font-family: var(--figure);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.05rem;
+  color: var(--clay);
+}
+
+.rule-item p { font-size: 0.9rem; color: var(--ink-soft); }
+
+/* ---------- worked example ---------- */
+
+.example {
+  border: 1px solid var(--rule);
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.example .eq { background: var(--paper-sunk); }
+
+/* ---------- calculators ---------- */
+
+.calc {
+  border: 1px solid var(--rule);
+  padding: 1.4rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.calc-intro { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.unit-toggle { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+
+.unit-toggle .seg {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+}
+
+.unit-toggle button {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: none;
+  border: 0;
+  color: var(--ink-soft);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+.unit-toggle button[aria-pressed="true"] {
+  background: var(--clay);
+  color: var(--paper);
+}
+
+.calc-group { display: flex; flex-direction: column; gap: 0.7rem; }
+
+.calc-group > h3 {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--sage);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+}
+
+.field { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+
+.field label {
+  font-family: var(--body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.field input {
+  font-family: var(--figure);
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 0.6rem 0.7rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.field input:focus-visible { outline: 2px solid var(--clay); outline-offset: 1px; }
+
+.field .hint { font-size: 0.78rem; color: var(--ink-soft); }
+
+.calc-out {
+  background: var(--paper-sunk);
+  border-left: 3px solid var(--clay);
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.out-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+}
+
+.out-row .k {
+  font-family: var(--body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.out-row .v {
+  font-family: var(--figure);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.25rem;
+  color: var(--clay);
+}
+
+.out-row.minor .v { font-size: 0.95rem; color: var(--ink); }
+
+.calc-note { font-size: 0.86rem; color: var(--ink-soft); }
+
+/* ---------- author note ---------- */
+
+.why {
+  background: var(--paper-sunk);
+  padding: 1.6rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.why p { font-family: var(--display); font-size: 1.02rem; line-height: 1.6; }
+
+.signoff {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+/* ---------- related pages ---------- */
+
+.related { border-top: 1px solid var(--rule); padding-top: 1.6rem; }
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+
+.related-grid a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem;
+  background: var(--paper-sunk);
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+  transition: border-color 140ms ease;
+  min-width: 0;
+}
+
+.related-grid a:hover, .related-grid a:focus-visible { border-color: var(--clay); }
+
+.related-grid .t { font-family: var(--display); font-size: 1.05rem; font-weight: 500; line-height: 1.3; }
+.related-grid .d { font-size: 0.86rem; color: var(--ink-soft); }
+
+/* ---------- book: full treatment ---------- */
+
+.book { border-top: 2px solid var(--ink); padding-top: 2rem; }
+
+.book-body {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: 1.8rem;
+  align-items: start;
+}
+
+@media (max-width: 34rem) {
+  .book-body { grid-template-columns: 1fr; gap: 1.4rem; }
+  .cover { max-width: 11rem; }
+}
+
+.cover {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  box-shadow: 0 10px 24px -14px rgba(42, 33, 28, 0.55);
+}
+
+.book-copy { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+
+.formats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin-top: 0.3rem;
+}
+
+.format {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.2rem;
+  background: var(--paper-sunk);
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+  transition: border-color 140ms ease, transform 140ms ease;
+  min-width: 0;
+}
+
+.format:hover, .format:focus-visible { border-color: var(--clay); transform: translateY(-2px); }
+
+.format .kind {
+  font-family: var(--body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+.format .name { font-family: var(--display); font-size: 1.15rem; font-weight: 500; line-height: 1.25; }
+
+.format .go { font-size: 0.86rem; color: var(--clay); font-weight: 500; }
+
+@media (prefers-reduced-motion: reduce) {
+  .format { transition: none; }
+  .format:hover, .format:focus-visible { transform: none; }
+}
+
+:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+
+/* ---------- book: compact card for secondary pages ---------- */
+
+.bookcard {
+  border-top: 2px solid var(--ink);
+  padding-top: 1.8rem;
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.bookcard img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  box-shadow: 0 8px 20px -12px rgba(42, 33, 28, 0.5);
+}
+
+.bookcard-copy { display: flex; flex-direction: column; gap: 0.7rem; min-width: 0; }
+
+.bookcard-copy p { font-size: 0.95rem; }
+
+.bookcard-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; margin-top: 0.2rem; }
+
+.bookcard-links a { color: var(--clay); font-weight: 500; font-size: 0.9rem; text-decoration: none; }
+.bookcard-links a:hover { text-decoration: underline; }
+
+@media (max-width: 30rem) {
+  .bookcard { grid-template-columns: 6rem 1fr; gap: 1.1rem; }
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+footer p { max-width: 38rem; }
+
+.series {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--rule);
+  margin-top: 0.3rem;
+}
+
+/* ---------- book two: secondary weight, deliberately quieter than book one ---------- */
+
+.next {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.6rem;
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.next img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  box-shadow: 0 6px 16px -10px rgba(42, 33, 28, 0.5);
+}
+
+.next-copy { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+
+.next-copy .label {
+  font-family: var(--body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+.next-copy .t {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.next-copy p { font-size: 0.9rem; color: var(--ink-soft); }
+
+.next-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; margin-top: 0.15rem; }
+
+.next-links a { color: var(--clay); font-weight: 500; font-size: 0.88rem; text-decoration: none; }
+.next-links a:hover { text-decoration: underline; }
+
+@media (max-width: 30rem) {
+  .next { grid-template-columns: 5rem 1fr; gap: 1rem; }
+}
+
+/* ---------- chart head + print button ---------- */
+
+.chart-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.print-btn {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clay);
+  background: none;
+  border: 1px solid var(--rule);
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+}
+
+.print-btn:hover { border-color: var(--clay); }
+
+/* ---------- print: these are reference charts, people want them on paper ---------- */
+
+@media print {
+  :root {
+    --paper: #fff;
+    --paper-sunk: #fff;
+    --ink: #000;
+    --ink-soft: #333;
+    --rule: #bbb;
+    --clay: #000;
+    --sage: #333;
+  }
+  .wrap { max-width: none; padding-block: 0; gap: 1.4rem; }
+  .book, .bookcard, .why, .sitenav, .related, .no-print { display: none; }
+  .scroller { overflow: visible; border: 0; }
+  table { min-width: 0; font-size: 10pt; }
+  .gauge, .warn { border-left: 2px solid #000; }
+  .calc-out { border-left: 2px solid #000; }
+  h1 { font-size: 20pt; }
+  section { break-inside: avoid; }
+  tr { break-inside: avoid; }
+}
