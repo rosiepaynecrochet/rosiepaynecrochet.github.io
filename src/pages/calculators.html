@@ -1,0 +1,250 @@
+  <section class="gauge">
+    <h3>Both of these start with a swatch</h3>
+    <p>There is no way around it. Your gauge is personal to your hands, your hook and your yarn, and every number below is derived from it. A swatch takes fifteen minutes; the blanket that comes out the wrong size took three weeks.</p>
+    <p>Work a square at least 5&nbsp;inches across in the yarn and stitch you plan to use, then measure 4&nbsp;inches through the middle, away from the edges where the tension is irregular.</p>
+    <div class="unit-toggle no-print">
+      <span class="k" style="font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft)">Units</span>
+      <span class="seg" role="group" aria-label="Measurement units">
+        <button type="button" id="u-in" aria-pressed="true">Inches</button>
+        <button type="button" id="u-cm" aria-pressed="false">Centimetres</button>
+      </span>
+    </div>
+  </section>
+
+  <section>
+    <h2>1. Stitch and row counts</h2>
+    <p>Turns your gauge and a target measurement into the two numbers you actually need: how many chains to start with, and how many rows to work.</p>
+
+    <div class="calc">
+      <div class="calc-group">
+        <h3>From your swatch</h3>
+        <div class="fields">
+          <div class="field">
+            <label for="g-st">Stitches in <span class="basis">4 in</span></label>
+            <input type="number" id="g-st" value="14" min="1" step="0.5" inputmode="decimal">
+            <span class="hint">Counted across</span>
+          </div>
+          <div class="field">
+            <label for="g-rows">Rows in <span class="basis">4 in</span></label>
+            <input type="number" id="g-rows" value="16" min="1" step="0.5" inputmode="decimal">
+            <span class="hint">Counted down</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-group">
+        <h3>What you want to make</h3>
+        <div class="fields">
+          <div class="field">
+            <label for="g-w">Target width (<span class="unit">in</span>)</label>
+            <input type="number" id="g-w" value="8" min="0.1" step="0.5" inputmode="decimal">
+            <span class="hint">Finished, after blocking</span>
+          </div>
+          <div class="field">
+            <label for="g-l">Target length (<span class="unit">in</span>)</label>
+            <input type="number" id="g-l" value="8" min="0.1" step="0.5" inputmode="decimal">
+            <span class="hint">Finished, after blocking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-out" aria-live="polite">
+        <div class="out-row">
+          <span class="k">Starting chain</span>
+          <span class="v" id="o-chain">&mdash;</span>
+        </div>
+        <div class="out-row">
+          <span class="k">Rows to work</span>
+          <span class="v" id="o-rows">&mdash;</span>
+        </div>
+        <div class="out-row minor">
+          <span class="k">Your gauge</span>
+          <span class="v" id="o-gauge">&mdash;</span>
+        </div>
+      </div>
+
+      <p class="calc-note">The chain figure is the number of working stitches. Add whatever turning chain your stitch needs on top — one extra for single crochet, two for half double, three for double crochet.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. How much yarn</h2>
+    <p>Most yardage charts guess from the project type. This works it out from the fabric you have actually made, which is the only figure that accounts for your tension, your stitch and your yarn at the same time.</p>
+    <p>Weigh your swatch on a kitchen scale — most read to 1&nbsp;gram, which is close enough. Then take the length and weight printed on the ball band.</p>
+
+    <div class="calc">
+      <div class="calc-group">
+        <h3>Your swatch</h3>
+        <div class="fields">
+          <div class="field">
+            <label for="y-sw">Width (<span class="unit">in</span>)</label>
+            <input type="number" id="y-sw" value="4" min="0.1" step="0.5" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="y-sh">Height (<span class="unit">in</span>)</label>
+            <input type="number" id="y-sh" value="4" min="0.1" step="0.5" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="y-sg">Weight (g)</label>
+            <input type="number" id="y-sg" value="5" min="0.1" step="0.5" inputmode="decimal">
+            <span class="hint">On a kitchen scale</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-group">
+        <h3>Your yarn, from the ball band</h3>
+        <div class="fields">
+          <div class="field">
+            <label for="y-bg">Ball weight (g)</label>
+            <input type="number" id="y-bg" value="100" min="1" step="1" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="y-by">Length per ball</label>
+            <input type="number" id="y-by" value="220" min="1" step="1" inputmode="decimal">
+            <span class="hint">Yards or metres &mdash; results match</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-group">
+        <h3>The project</h3>
+        <div class="fields">
+          <div class="field">
+            <label for="y-pw">Width (<span class="unit">in</span>)</label>
+            <input type="number" id="y-pw" value="36" min="0.1" step="1" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="y-ph">Height (<span class="unit">in</span>)</label>
+            <input type="number" id="y-ph" value="48" min="0.1" step="1" inputmode="decimal">
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-out" aria-live="polite">
+        <div class="out-row">
+          <span class="k">Balls to buy</span>
+          <span class="v" id="o-balls">&mdash;</span>
+        </div>
+        <div class="out-row">
+          <span class="k">Length needed</span>
+          <span class="v" id="o-len">&mdash;</span>
+        </div>
+        <div class="out-row minor">
+          <span class="k">Weight of fabric</span>
+          <span class="v" id="o-grams">&mdash;</span>
+        </div>
+        <div class="out-row minor">
+          <span class="k">Bare minimum, no margin</span>
+          <span class="v" id="o-bare">&mdash;</span>
+        </div>
+      </div>
+
+      <p class="calc-note">A 15&nbsp;per&nbsp;cent margin is built into the figures above. That covers the edging, the swatch you sacrificed, and the two rows you will pull back. Buy the whole amount in one dye lot at the start — the same shade from a different lot will show as a band across the finished piece.</p>
+    </div>
+  </section>
+
+  <section class="warn">
+    <h3>Where these calculators stop being accurate</h3>
+    <ul class="plain">
+      <li><strong>A different stitch eats a different amount.</strong> Swatch in the stitch the project actually uses. Dense single crochet can take half as much again as an open double crochet over the same area.</li>
+      <li><strong>Shaped pieces are not rectangles.</strong> For a garment or a round piece, add up the area of the rough rectangles it would fit inside, then treat the total as the project area.</li>
+      <li><strong>Colourwork and stripes carry their own waste</strong> in carried floats and sewn ends. Add 10&nbsp;per&nbsp;cent on top for anything with more than two colours.</li>
+      <li><strong>Blocking changes the measurement.</strong> Block the swatch before measuring it if you intend to block the finished piece, which, in wool or cotton, you should.</li>
+    </ul>
+  </section>
+
+  <section class="example">
+    <h3>Checking it against something known</h3>
+    <p>A 50 &times; 60&nbsp;inch throw in worsted weight is usually quoted at around 2,000&nbsp;yards. Put a 4&nbsp;&times;&nbsp;4&nbsp;inch worsted swatch weighing 5&nbsp;g into the calculator above, with a 100&nbsp;g / 220&nbsp;yd ball, and it lands in the same place.</p>
+    <p>That is the test to apply to any yardage estimate, including this one: run it against a project whose answer you already know. If it disagrees badly, your swatch is not representative of the fabric you are about to make.</p>
+    <p>The finished measurements for common projects are on the <a href="/">sizing chart</a>.</p>
+  </section>
+
+<script>
+(function () {
+  var unit = "in";      // "in" or "cm"
+  var basis = 4;        // gauge measured over 4 in, or 10 cm
+
+  function num(id) {
+    var el = document.getElementById(id);
+    if (!el) return NaN;
+    var v = parseFloat(el.value);
+    return (isFinite(v) && v > 0) ? v : NaN;
+  }
+
+  function set(id, text) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
+  function round(n, dp) {
+    var f = Math.pow(10, dp || 0);
+    return Math.round(n * f) / f;
+  }
+
+  function calcGauge() {
+    var st = num("g-st"), rows = num("g-rows"), w = num("g-w"), l = num("g-l");
+
+    if (isNaN(st) || isNaN(w)) { set("o-chain", "—"); }
+    else { set("o-chain", Math.round(w * (st / basis)) + " ch"); }
+
+    if (isNaN(rows) || isNaN(l)) { set("o-rows", "—"); }
+    else { set("o-rows", Math.round(l * (rows / basis)) + " rows"); }
+
+    if (isNaN(st) || isNaN(rows)) { set("o-gauge", "—"); }
+    else {
+      set("o-gauge", round(st / basis, 2) + " st / " + round(rows / basis, 2) + " rows per " + unit);
+    }
+  }
+
+  function calcYarn() {
+    var sw = num("y-sw"), sh = num("y-sh"), sg = num("y-sg");
+    var bg = num("y-bg"), by = num("y-by");
+    var pw = num("y-pw"), ph = num("y-ph");
+
+    if ([sw, sh, sg, bg, by, pw, ph].some(isNaN)) {
+      set("o-balls", "—"); set("o-len", "—");
+      set("o-grams", "—"); set("o-bare", "—");
+      return;
+    }
+
+    var ratio   = (pw * ph) / (sw * sh);
+    var grams   = ratio * sg;              // fabric weight, no margin
+    var perGram = by / bg;                 // length per gram
+    var bare    = grams * perGram;         // length, no margin
+    var needed  = bare * 1.15;             // with margin
+    var balls   = Math.ceil((grams * 1.15) / bg);
+
+    set("o-balls", balls + (balls === 1 ? " ball" : " balls"));
+    set("o-len", Math.round(needed).toLocaleString() + " yd/m");
+    set("o-grams", Math.round(grams).toLocaleString() + " g");
+    set("o-bare", Math.round(bare).toLocaleString() + " yd/m");
+  }
+
+  function all() { calcGauge(); calcYarn(); }
+
+  function setUnit(next) {
+    unit  = next;
+    basis = (next === "cm") ? 10 : 4;
+
+    document.getElementById("u-in").setAttribute("aria-pressed", String(next === "in"));
+    document.getElementById("u-cm").setAttribute("aria-pressed", String(next === "cm"));
+
+    var label = (next === "cm") ? "10 cm" : "4 in";
+    [].forEach.call(document.querySelectorAll(".basis"), function (el) { el.textContent = label; });
+    [].forEach.call(document.querySelectorAll(".unit"), function (el) { el.textContent = next; });
+
+    all();
+  }
+
+  document.getElementById("u-in").addEventListener("click", function () { setUnit("in"); });
+  document.getElementById("u-cm").addEventListener("click", function () { setUnit("cm"); });
+
+  [].forEach.call(document.querySelectorAll(".calc input"), function (el) {
+    el.addEventListener("input", all);
+  });
+
+  all();
+})();
+</script>
