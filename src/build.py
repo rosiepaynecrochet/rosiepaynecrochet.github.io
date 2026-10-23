@@ -269,15 +269,27 @@ def render(page, book_full):
     book = book_full if page["book"] == "full" else BOOKCARD
     related = "" if page.get("no_related") else related_html(slug)
 
-    blocks = [nav_html(slug),
-              '  <header class="masthead">\n'
+    # The nav and the footer are full-width colour bands, so they sit outside
+    # the reading column rather than inside it.
+    nav = ('<div class="navband no-print">\n'
+           '  <div class="bandinner">\n'
+           f'{nav_html(slug)}\n'
+           "  </div>\n"
+           "</div>")
+
+    foot = ('<div class="footband">\n'
+            '  <div class="bandinner">\n'
+            f"{FOOTER}\n"
+            "  </div>\n"
+            "</div>")
+
+    blocks = ['  <header class="masthead">\n'
               f'    <h1>{page["h1"]}</h1>\n'
               f'    <p class="standfirst">{page["standfirst"]}</p>\n'
               "  </header>",
               content,
               related,
-              book,
-              FOOTER]
+              book]
 
     body = "\n\n".join(b for b in blocks if b)
 
@@ -318,11 +330,15 @@ def render(page, book_full):
 <!-- End Cloudflare Web Analytics -->
 </head>
 <body>
+{nav}
+
 <div class="wrap">
 
 {body}
 
 </div>
+
+{foot}
 </body>
 </html>
 """

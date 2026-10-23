@@ -2,74 +2,87 @@
    Rosie Payne · Crochet Reference
    One stylesheet, every page.
 
-   Concept: the haberdashery reference card — the stamped card that comes with
-   a good set of hooks. Precise, printed, tactile.
+   Direction: linen and forest. A deep forest green does the structural work —
+   the menu band, each chart's header, the footer — with white panels on a
+   linen ground. The madder red is spent only on measurements, so the numbers
+   never compete with the furniture on a site whose whole job is numbers.
 
-   The measurement is the hero. A reader arrives mid-project wanting one
-   number, so the number carries the typographic weight and the prose stays
-   quiet around it.
-
-   Three rules this file keeps:
-     1. Surfaces lift off the page. Nothing sinks into it.
-     2. No tracked all-caps labels. Weight and size do that work.
-     3. On a phone every table row becomes a card, never a sideways scroll.
+   Rules this file keeps:
+     1. The measurement is the hero. Prose stays quiet around it.
+     2. Real value range: forest bands, white panels, linen ground.
+     3. No tracked all-caps labels. Weight and size do that work.
+     4. On a phone the chart is one white panel of rows, never a sideways
+        scroll.
    ========================================================================== */
 
 :root {
-  /* paper and ink */
-  --paper:      #f2eade;
-  --card:       #fbf7f0;   /* lighter than paper, so cards lift */
-  --card-deep:  #ece2d3;   /* for the rare surface that should recede */
-  --ink:        #2a1e16;
-  --ink-soft:   #6e5f52;
-  --rule:       #ddd0be;
-  --rule-soft:  #e7dccd;
+  --linen:      #f3eee3;   /* the page ground */
+  --card:       #ffffff;   /* panels, lifted off the linen */
+  --card-deep:  #ebe6d9;   /* the rare surface that should recede */
 
-  /* pigment, not pastel: madder root and a grey-green */
-  --madder:     #9e4426;
-  --madder-lit: #b85631;
+  --forest:     #22331f;
+  --forest-ink: #f1efe4;
+  --forest-dim: #b3bfa8;
+
+  --ink:        #1d2419;
+  --ink-soft:   #5d6554;
+  --rule:       #d7d8c9;
+  --rule-soft:  #e4e2d6;
+
+  --madder:     #9e4426;   /* measurements only */
+  --madder-lit: #b55330;
+  --ochre:      #c6803f;   /* the current page, and links on forest */
   --sage:       #55664c;
 
-  --lift-1: 0 1px 2px rgba(42, 30, 22, 0.04), 0 2px 8px -2px rgba(42, 30, 22, 0.06);
-  --lift-2: 0 2px 4px rgba(42, 30, 22, 0.05), 0 12px 28px -12px rgba(42, 30, 22, 0.22);
+  --lift-1: 0 1px 2px rgb(29 36 25 / 0.04), 0 2px 10px -3px rgb(29 36 25 / 0.07);
+  --lift-2: 0 2px 4px rgb(29 36 25 / 0.05), 0 14px 30px -14px rgb(29 36 25 / 0.26);
 
   --display: "Fraunces", Georgia, "Times New Roman", serif;
   --body:    "Instrument Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 
   --measure: 64ch;
+  --column:  46rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper:      #17120e;
-    --card:       #211a14;
-    --card-deep:  #120e0a;
-    --ink:        #f0e7db;
-    --ink-soft:   #a99685;
-    --rule:       #3a2f26;
-    --rule-soft:  #2e241d;
+    --linen:      #121711;
+    --card:       #1b231a;
+    --card-deep:  #0e130d;
+    --forest:     #2b3a27;   /* kept clearly greener than the ground, so the band still reads as a band */
+    --forest-ink: #eef0e7;
+    --forest-dim: #9aa891;
+    --ink:        #eef0e7;
+    --ink-soft:   #9fa795;
+    --rule:       #333c30;
+    --rule-soft:  #283020;
     --madder:     #e08456;
     --madder-lit: #ea9169;
+    --ochre:      #d9a05f;
     --sage:       #9bae8b;
-    --lift-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
-    --lift-2: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 28px -12px rgba(0, 0, 0, 0.7);
+    --lift-1: 0 1px 2px rgb(0 0 0 / 0.3), 0 2px 10px -3px rgb(0 0 0 / 0.4);
+    --lift-2: 0 2px 4px rgb(0 0 0 / 0.3), 0 14px 30px -14px rgb(0 0 0 / 0.65);
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --paper:      #17120e;
-  --card:       #211a14;
-  --card-deep:  #120e0a;
-  --ink:        #f0e7db;
-  --ink-soft:   #a99685;
-  --rule:       #3a2f26;
-  --rule-soft:  #2e241d;
+  --linen:      #121711;
+  --card:       #1b231a;
+  --card-deep:  #0e130d;
+  --forest:     #2b3a27;
+  --forest-ink: #eef0e7;
+  --forest-dim: #9aa891;
+  --ink:        #eef0e7;
+  --ink-soft:   #9fa795;
+  --rule:       #333c30;
+  --rule-soft:  #283020;
   --madder:     #e08456;
   --madder-lit: #ea9169;
+  --ochre:      #d9a05f;
   --sage:       #9bae8b;
-  --lift-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
-  --lift-2: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 28px -12px rgba(0, 0, 0, 0.7);
+  --lift-1: 0 1px 2px rgb(0 0 0 / 0.3), 0 2px 10px -3px rgb(0 0 0 / 0.4);
+  --lift-2: 0 2px 4px rgb(0 0 0 / 0.3), 0 14px 30px -14px rgb(0 0 0 / 0.65);
   color-scheme: dark;
 }
 
@@ -78,7 +91,7 @@
 html { -webkit-text-size-adjust: 100%; }
 
 body {
-  background: var(--paper);
+  background: var(--linen);
   color: var(--ink);
   font-family: var(--body);
   font-size: 1.0625rem;
@@ -88,12 +101,27 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-.wrap {
-  max-width: 46rem;
+/* ---------- the two colour bands, and the reading column between them ---------- */
+
+.bandinner {
+  max-width: var(--column);
   margin: 0 auto;
   padding-left: max(18px, env(safe-area-inset-left, 0px));
   padding-right: max(18px, env(safe-area-inset-right, 0px));
-  padding-block: 1.5rem 4rem;
+}
+
+.navband { background: var(--forest); }
+.navband .bandinner { padding-block: 0.9rem; }
+
+.footband { background: var(--forest); color: var(--forest-ink); margin-top: 3.6rem; }
+.footband .bandinner { padding-block: 2rem 2.4rem; }
+
+.wrap {
+  max-width: var(--column);
+  margin: 0 auto;
+  padding-left: max(18px, env(safe-area-inset-left, 0px));
+  padding-right: max(18px, env(safe-area-inset-right, 0px));
+  padding-block: 2.2rem 0;
   display: flex;
   flex-direction: column;
   gap: 3.4rem;
@@ -105,23 +133,20 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.5rem 1.5rem;
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: -1.8rem;
+  gap: 0.45rem 1.35rem;
 }
 
 .sitenav .brand {
   font-family: var(--display);
-  font-size: 1.12rem;
+  font-size: 1.14rem;
   font-variation-settings: "opsz" 24, "wght" 600, "SOFT" 40, "WONK" 1;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--forest-ink);
   text-decoration: none;
   margin-right: auto;
 }
 
-.sitenav .brand:hover { color: var(--madder); }
+.sitenav .brand:hover { color: var(--ochre); }
 
 .sitenav ul {
   list-style: none;
@@ -134,29 +159,24 @@ body {
 
 .sitenav a {
   font-size: 0.9rem;
-  color: var(--ink-soft);
+  color: var(--forest-dim);
   text-decoration: none;
   padding-bottom: 2px;
-  border-bottom: 1.5px solid transparent;
+  border-bottom: 2px solid transparent;
 }
 
-.sitenav a:hover { color: var(--ink); border-bottom-color: var(--rule); }
+.sitenav a:hover { color: var(--forest-ink); }
 
 .sitenav a[aria-current="page"] {
-  color: var(--ink);
-  border-bottom-color: var(--madder);
+  color: var(--forest-ink);
+  border-bottom-color: var(--ochre);
 }
 
 /* ---------- masthead ---------- */
 
 .masthead { display: flex; flex-direction: column; gap: 1rem; }
 
-/* Kept for markup compatibility; set as a small sage note, not a tracked label. */
-.eyebrow {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--sage);
-}
+.eyebrow { font-size: 0.9rem; font-weight: 500; color: var(--sage); }
 
 h1 {
   font-family: var(--display);
@@ -231,11 +251,10 @@ ul.plain, .steps {
 
 .steps li, ul.plain li { padding-left: 0.15rem; }
 
-::marker { color: var(--madder); }
+::marker { color: var(--sage); }
 
 /* ---------- callouts ---------- */
 
-/* The key insight on a page: raised card, madder edge. */
 .gauge, .warn, .example {
   background: var(--card);
   border: 1px solid var(--rule-soft);
@@ -248,17 +267,16 @@ ul.plain, .steps {
   gap: 0.95rem;
 }
 
-/* Where getting it wrong ruins the project: same card, sage edge. */
+/* Where getting it wrong ruins the project. */
 .warn { border-left-color: var(--sage); }
 
-/* A worked example is evidence, so it sits quieter: hairline, no colour edge. */
+/* A worked example is evidence, so it sits quieter. */
 .example {
   border-left: 1px solid var(--rule-soft);
   box-shadow: none;
   background: none;
 }
 
-/* Formulas: tabular figures, recessed slab. */
 .eq {
   font-family: var(--body);
   font-size: 0.97rem;
@@ -272,11 +290,57 @@ ul.plain, .steps {
 }
 
 .eq span { color: var(--madder); font-weight: 600; }
-.example .eq { background: var(--card-deep); }
 
-/* ---------- tables: the heart of the site ---------- */
+/* ---------- the chart: forest header on a white panel ---------- */
 
-.scroller { overflow: visible; }
+/* These sections hold exactly a header bar and its table, joined as one unit. */
+section:has(> .chart-head) { gap: 0; }
+
+.chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: var(--forest);
+  color: var(--forest-ink);
+  border-radius: 3px 3px 0 0;
+  padding: 0.75rem 0.95rem;
+}
+
+.chart-head h2 {
+  color: var(--forest-ink);
+  font-size: clamp(1.2rem, 4vw, 1.4rem);
+  font-variation-settings: "opsz" 34, "wght" 600, "SOFT" 34, "WONK" 0;
+}
+
+.print-btn {
+  font-family: var(--body);
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 0.4rem 0.85rem;
+  cursor: pointer;
+}
+
+.print-btn:hover { color: var(--madder); }
+
+.scroller {
+  overflow: visible;
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  box-shadow: var(--lift-1);
+  padding-inline: 0.95rem;
+}
+
+.chart-head + .scroller {
+  border-top: 0;
+  border-radius: 0 0 3px 3px;
+}
 
 table {
   width: 100%;
@@ -286,38 +350,35 @@ table {
 
 caption {
   text-align: left;
-  padding-bottom: 0.9rem;
+  padding-block: 0.9rem 0.2rem;
   color: var(--ink-soft);
   font-size: 0.94rem;
   max-width: var(--measure);
 }
 
-/* --- phone: every row is a card --- */
+/* --- phone: the panel holds a column of rows, not a sideways scroll --- */
 
 @media (max-width: 47.99rem) {
   table, tbody, tr, td { display: block; }
   thead { display: none; }
   caption { display: block; }
 
-  tbody { display: flex; flex-direction: column; gap: 0.55rem; }
+  tbody { display: flex; flex-direction: column; }
 
-  /* The measurement and its designations sit on one line, the explanation
-     below it. A reader scanning for one hook size should not have to scroll
-     past a tall card for every size they are not looking for. */
+  /* The measurement and its designations on one line, the explanation below.
+     Someone scanning for one hook size should not scroll past a tall card
+     for every size they are not looking for. */
   tr {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.15rem 1.35rem;
-    background: var(--card);
-    border: 1px solid var(--rule-soft);
-    border-left: 4px solid var(--rule);
-    border-radius: 2px;
-    box-shadow: var(--lift-1);
-    padding: 0.8rem 1rem 0.9rem;
+    gap: 0.15rem 1.3rem;
+    padding-block: 0.8rem;
+    border-bottom: 1px solid var(--rule-soft);
   }
 
-  /* the number the reader came for */
+  tbody tr:last-child { border-bottom: 0; }
+
   td:first-child {
     font-family: var(--display);
     font-size: 1.6rem;
@@ -325,10 +386,10 @@ caption {
     font-variant-numeric: tabular-nums;
     line-height: 1.1;
     letter-spacing: -0.02em;
+    color: var(--madder);
     margin-right: auto;
   }
 
-  /* the designations, as stamped pairs */
   td:not(:first-child):not(.note) {
     font-size: 1rem;
     font-weight: 500;
@@ -345,16 +406,19 @@ caption {
 
   td.note {
     flex: 1 0 100%;
-    margin-top: 0.5rem;
+    margin-top: 0.45rem;
     color: var(--ink-soft);
     font-size: 0.93rem;
     line-height: 1.5;
   }
 
-  tr.flag { border-left-color: var(--madder); }
+  tr.flag {
+    box-shadow: inset 3px 0 0 var(--madder);
+    padding-left: 0.75rem;
+  }
 }
 
-/* --- wider screens: a proper table --- */
+/* --- wider screens: a proper table inside the panel --- */
 
 @media (min-width: 48rem) {
   th {
@@ -362,7 +426,7 @@ caption {
     font-size: 0.86rem;
     font-weight: 500;
     color: var(--ink-soft);
-    padding: 0 1.1rem 0.7rem 0;
+    padding: 0.9rem 1.1rem 0.7rem 0;
     border-bottom: 1px solid var(--rule);
     vertical-align: bottom;
   }
@@ -381,6 +445,7 @@ caption {
     font-variation-settings: "opsz" 32, "wght" 500, "SOFT" 28, "WONK" 0;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.015em;
+    color: var(--madder);
     white-space: nowrap;
     padding-right: 1.6rem;
   }
@@ -395,11 +460,11 @@ caption {
   }
 
   /* A row worth lingering on: marked at the edge, not flooded with colour. */
-  tr.flag td { background: var(--card); }
   tr.flag td:first-child {
     box-shadow: inset 3px 0 0 var(--madder);
-    padding-left: 0.85rem;
+    padding-left: 0.8rem;
   }
+  tr.flag td { background: var(--card-deep); }
 }
 
 .size { white-space: nowrap; }
@@ -418,7 +483,7 @@ caption {
   gap: 0.45rem;
   min-width: 0;
   padding-top: 0.9rem;
-  border-top: 2px solid var(--rule);
+  border-top: 2px solid var(--forest);
 }
 
 .rule-item .num {
@@ -433,37 +498,12 @@ caption {
 .rule-item h3 { font-size: 1.05rem; }
 .rule-item p { font-size: 0.96rem; color: var(--ink-soft); }
 
-/* ---------- chart heading and print button ---------- */
-
-.chart-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.print-btn {
-  font-family: var(--body);
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--ink);
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  padding: 0.45rem 0.9rem;
-  cursor: pointer;
-  box-shadow: var(--lift-1);
-}
-
-.print-btn:hover { border-color: var(--madder); color: var(--madder); }
-
 /* ---------- calculators ---------- */
 
 .calc {
   background: var(--card);
   border: 1px solid var(--rule-soft);
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: var(--lift-1);
   padding: 1.5rem 1.4rem;
   display: flex;
@@ -499,8 +539,8 @@ caption {
 .unit-toggle button:hover { color: var(--ink); }
 
 .unit-toggle button[aria-pressed="true"] {
-  background: var(--madder);
-  color: #fbf7f0;
+  background: var(--forest);
+  color: var(--forest-ink);
 }
 
 .calc-group { display: flex; flex-direction: column; gap: 0.85rem; }
@@ -523,12 +563,7 @@ caption {
 
 .field { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
 
-.field label {
-  font-family: var(--body);
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--ink);
-}
+.field label { font-size: 0.92rem; font-weight: 500; color: var(--ink); }
 
 .field input {
   font-family: var(--display);
@@ -536,7 +571,7 @@ caption {
   font-variation-settings: "opsz" 24, "wght" 500, "SOFT" 28, "WONK" 0;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--linen);
   border: 1px solid var(--rule);
   border-radius: 2px;
   padding: 0.55rem 0.7rem;
@@ -549,11 +584,11 @@ caption {
 
 .field .hint { font-size: 0.86rem; color: var(--ink-soft); }
 
-/* The answer. This is what the calculator is for, so it gets the weight. */
+/* The answer is what the calculator is for, so it gets the forest block. */
 .calc-out {
-  background: var(--card-deep);
-  border-left: 4px solid var(--madder);
-  border-radius: 2px;
+  background: var(--forest);
+  color: var(--forest-ink);
+  border-radius: 3px;
   padding: 1.25rem 1.3rem;
   display: flex;
   flex-direction: column;
@@ -568,7 +603,7 @@ caption {
   gap: 0.25rem 1rem;
 }
 
-.out-row .k { font-size: 0.96rem; color: var(--ink-soft); }
+.out-row .k { font-size: 0.96rem; color: var(--forest-dim); }
 
 .out-row .v {
   font-family: var(--display);
@@ -577,10 +612,10 @@ caption {
   font-variant-numeric: tabular-nums;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--madder);
+  color: var(--ochre);
 }
 
-.out-row.minor .v { font-size: 1.14rem; color: var(--ink); }
+.out-row.minor .v { font-size: 1.14rem; color: var(--forest-ink); }
 
 .calc-note { font-size: 0.94rem; color: var(--ink-soft); }
 
@@ -589,7 +624,7 @@ caption {
 .why {
   background: var(--card);
   border: 1px solid var(--rule-soft);
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: var(--lift-1);
   padding: 1.7rem 1.5rem;
   display: flex;
@@ -616,7 +651,7 @@ caption {
 
 /* ---------- related pages ---------- */
 
-.related { border-top: 1px solid var(--rule); padding-top: 1.8rem; }
+.related { border-top: 2px solid var(--forest); padding-top: 1.8rem; }
 
 .related-grid {
   display: grid;
@@ -631,7 +666,7 @@ caption {
   padding: 1.15rem;
   background: var(--card);
   border: 1px solid var(--rule-soft);
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: var(--lift-1);
   text-decoration: none;
   color: inherit;
@@ -640,7 +675,7 @@ caption {
 }
 
 .related-grid a:hover, .related-grid a:focus-visible {
-  border-color: var(--madder);
+  border-color: var(--forest);
   box-shadow: var(--lift-2);
 }
 
@@ -656,7 +691,7 @@ caption {
 
 /* ---------- book: full treatment, home page ---------- */
 
-.book { border-top: 2px solid var(--ink); padding-top: 2.1rem; }
+.book { border-top: 2px solid var(--forest); padding-top: 2.1rem; }
 
 .book-body {
   display: grid;
@@ -690,7 +725,7 @@ caption {
   padding: 1.2rem;
   background: var(--card);
   border: 1px solid var(--rule-soft);
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: var(--lift-1);
   text-decoration: none;
   color: inherit;
@@ -699,7 +734,7 @@ caption {
 }
 
 .format:hover, .format:focus-visible {
-  border-color: var(--madder);
+  border-color: var(--forest);
   box-shadow: var(--lift-2);
 }
 
@@ -723,7 +758,7 @@ caption {
 /* ---------- book: compact card, secondary pages ---------- */
 
 .bookcard {
-  border-top: 2px solid var(--ink);
+  border-top: 2px solid var(--forest);
   padding-top: 1.9rem;
   display: grid;
   grid-template-columns: 8.5rem 1fr;
@@ -783,20 +818,19 @@ caption {
   .next { grid-template-columns: 5.5rem 1fr; gap: 1.1rem; }
 }
 
-/* ---------- footer ---------- */
+/* ---------- footer, on the forest band ---------- */
 
 footer {
-  border-top: 1px solid var(--rule);
-  padding-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  font-size: 0.92rem;
-  color: var(--ink-soft);
+  gap: 0.85rem;
+  font-size: 0.94rem;
+  color: var(--forest-dim);
 }
 
 footer p { max-width: var(--measure); }
-footer a { color: var(--madder); }
+footer a { color: var(--ochre); }
+footer a:hover { color: var(--forest-ink); }
 
 .series {
   font-size: 0.94rem;
@@ -810,10 +844,12 @@ footer a { color: var(--madder); }
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem 1.3rem;
-  font-size: 0.88rem;
+  font-size: 0.89rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgb(241 239 228 / 0.14);
 }
 
-:focus-visible { outline: 2px solid var(--madder); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ochre); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
@@ -823,32 +859,60 @@ footer a { color: var(--madder); }
 
 @media print {
   :root {
-    --paper: #fff;
+    --linen: #fff;
     --card: #fff;
     --card-deep: #fff;
+    --forest: #fff;
+    --forest-ink: #000;
+    --forest-dim: #333;
     --ink: #000;
     --ink-soft: #333;
     --rule: #999;
     --rule-soft: #ccc;
     --madder: #000;
     --madder-lit: #000;
+    --ochre: #000;
     --sage: #333;
     --lift-1: none;
     --lift-2: none;
   }
 
   .wrap { max-width: none; padding-block: 0; gap: 1.5rem; }
-  .book, .bookcard, .why, .sitenav, .related, .no-print { display: none; }
+  .book, .bookcard, .why, .navband, .sitenav, .related, .no-print { display: none; }
+  .footband { margin-top: 1.5rem; }
+  .footband .bandinner { padding-block: 0.8rem 0; max-width: none; }
+  footer { border-top: 1px solid #999; padding-top: 0.8rem; font-size: 8.5pt; }
+  .fineprint { border-top: 0; }
 
   h1 { font-size: 22pt; }
   h2 { font-size: 14pt; }
   body { font-size: 10.5pt; }
 
-  .gauge, .warn, .calc-out { border-left: 2px solid #000; box-shadow: none; }
+  .gauge, .warn { border-left: 2px solid #000; box-shadow: none; }
   .example, .calc, .related-grid a, .format { box-shadow: none; }
 
+  .chart-head {
+    background: none;
+    color: #000;
+    padding: 0 0 0.4rem;
+    border-bottom: 2px solid #000;
+  }
+  .chart-head h2 { color: #000; }
+
+  .calc-out {
+    background: none;
+    color: #000;
+    border-left: 2px solid #000;
+  }
+  .calc-out .k, .calc-out .v { color: #000; }
+
   /* back to a real table, whatever the paper width */
-  .scroller { overflow: visible; }
+  .scroller {
+    overflow: visible;
+    border: 0;
+    box-shadow: none;
+    padding-inline: 0;
+  }
   table { display: table; width: 100%; font-size: 9.5pt; }
   thead { display: table-header-group; }
   tbody { display: table-row-group; }
@@ -871,6 +935,7 @@ footer a { color: var(--madder); }
     border-bottom: 1px solid #ccc;
     vertical-align: baseline;
     margin: 0;
+    color: #000;
   }
   td:first-child {
     font-family: var(--display);
@@ -878,16 +943,12 @@ footer a { color: var(--madder); }
     font-weight: 600;
     white-space: nowrap;
     margin: 0;
+    color: #000;
   }
   td:not(:first-child):not(.note) { display: table-cell; margin: 0; }
   td:not(:first-child):not(.note)::before { content: none; }
-  td.note {
-    margin: 0;
-    padding-top: 0.4rem;
-    border-top: 0;
-    font-size: 9pt;
-  }
-  tr.flag td { background: none; font-weight: 600; }
+  td.note { margin: 0; padding-top: 0.4rem; border-top: 0; font-size: 9pt; }
+  tr.flag td { background: none; font-weight: 600; box-shadow: none; padding-left: 0; }
   tr.flag td:first-child { box-shadow: none; padding-left: 0; }
 
   section { break-inside: avoid; }
