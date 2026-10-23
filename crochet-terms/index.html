@@ -29,7 +29,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Karla:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400..600&display=swap">
 <link rel="stylesheet" href="/style.css">
 
 <!-- Cloudflare Web Analytics -->
@@ -52,7 +52,6 @@
   </nav>
 
   <header class="masthead">
-    <div class="eyebrow">Rosie Payne · Crochet Reference</div>
     <h1>US vs UK Crochet Terms</h1>
     <p class="standfirst">The same abbreviation means two different stitches depending on which side of the Atlantic the pattern was written. Here is how to tell, and how to translate.</p>
   </header>
@@ -82,45 +81,45 @@
         <tbody>
           <tr>
             <td>Slip stitch</td>
-            <td class="size">sl st</td>
-            <td>Slip stitch</td>
-            <td class="size">ss</td>
+            <td class="size" data-label="US">sl st</td>
+            <td data-label="UK name">Slip stitch</td>
+            <td class="size" data-label="UK">ss</td>
           </tr>
           <tr class="flag">
             <td>Single crochet</td>
-            <td class="size">sc</td>
-            <td>Double crochet</td>
-            <td class="size">dc</td>
+            <td class="size" data-label="US">sc</td>
+            <td data-label="UK name">Double crochet</td>
+            <td class="size" data-label="UK">dc</td>
           </tr>
           <tr>
             <td>Half double crochet</td>
-            <td class="size">hdc</td>
-            <td>Half treble crochet</td>
-            <td class="size">htr</td>
+            <td class="size" data-label="US">hdc</td>
+            <td data-label="UK name">Half treble crochet</td>
+            <td class="size" data-label="UK">htr</td>
           </tr>
           <tr class="flag">
             <td>Double crochet</td>
-            <td class="size">dc</td>
-            <td>Treble crochet</td>
-            <td class="size">tr</td>
+            <td class="size" data-label="US">dc</td>
+            <td data-label="UK name">Treble crochet</td>
+            <td class="size" data-label="UK">tr</td>
           </tr>
           <tr>
             <td>Treble crochet</td>
-            <td class="size">tr</td>
-            <td>Double treble</td>
-            <td class="size">dtr</td>
+            <td class="size" data-label="US">tr</td>
+            <td data-label="UK name">Double treble</td>
+            <td class="size" data-label="UK">dtr</td>
           </tr>
           <tr>
             <td>Double treble</td>
-            <td class="size">dtr</td>
-            <td>Triple treble</td>
-            <td class="size">trtr</td>
+            <td class="size" data-label="US">dtr</td>
+            <td data-label="UK name">Triple treble</td>
+            <td class="size" data-label="UK">trtr</td>
           </tr>
           <tr>
             <td>Triple treble</td>
-            <td class="size">trtr</td>
-            <td>Quadruple treble</td>
-            <td class="size">qtr</td>
+            <td class="size" data-label="US">trtr</td>
+            <td data-label="UK name">Quadruple treble</td>
+            <td class="size" data-label="UK">qtr</td>
           </tr>
         </tbody>
       </table>
@@ -190,38 +189,38 @@
         <tbody>
           <tr>
             <td>Gauge</td>
-            <td>Tension</td>
-            <td class="note">Identical idea: stitches and rows in a measured square. Both matter equally.</td>
+            <td data-label="UK">Tension</td>
+            <td class="note" data-label="Notes">Identical idea: stitches and rows in a measured square. Both matter equally.</td>
           </tr>
           <tr>
             <td>Skip</td>
-            <td>Miss</td>
-            <td class="note">Pass over a stitch without working into it.</td>
+            <td data-label="UK">Miss</td>
+            <td class="note" data-label="Notes">Pass over a stitch without working into it.</td>
           </tr>
           <tr>
             <td>Yarn over (yo)</td>
-            <td>Yarn over hook (yoh)</td>
-            <td class="note">The same movement, written longer.</td>
+            <td data-label="UK">Yarn over hook (yoh)</td>
+            <td class="note" data-label="Notes">The same movement, written longer.</td>
           </tr>
           <tr>
             <td>Afghan</td>
-            <td>Blanket / throw</td>
-            <td class="note">"Afghan" is rarely used outside North America.</td>
+            <td data-label="UK">Blanket / throw</td>
+            <td class="note" data-label="Notes">"Afghan" is rarely used outside North America.</td>
           </tr>
           <tr>
             <td>Worsted weight</td>
-            <td>Aran weight</td>
-            <td class="note">Close but not identical — aran often runs slightly heavier. See the <a href="/yarn-weights/">yarn weights chart</a>.</td>
+            <td data-label="UK">Aran weight</td>
+            <td class="note" data-label="Notes">Close but not identical — aran often runs slightly heavier. See the <a href="/yarn-weights/">yarn weights chart</a>.</td>
           </tr>
           <tr>
             <td>Sport weight</td>
-            <td>4&nbsp;ply</td>
-            <td class="note">Ply names describe construction, not thickness, but are used as weight labels in the UK and Australia.</td>
+            <td data-label="UK">4&nbsp;ply</td>
+            <td class="note" data-label="Notes">Ply names describe construction, not thickness, but are used as weight labels in the UK and Australia.</td>
           </tr>
           <tr>
             <td>Fingering</td>
-            <td>3&nbsp;ply / sock</td>
-            <td class="note">Thinner than sport. Sock yarn is the easiest to find in this range.</td>
+            <td data-label="UK">3&nbsp;ply / sock</td>
+            <td class="note" data-label="Notes">Thinner than sport. Sock yarn is the easiest to find in this range.</td>
           </tr>
         </tbody>
       </table>
@@ -259,8 +258,8 @@
       <h2>Where the rest of it lives</h2>
       <p>These charts cover the numbers. The book covers what goes wrong between casting on and finishing — 100+ fixes, including the full gauge and yardage tables these pages were pulled from.</p>
       <div class="bookcard-links">
-        <a href="https://www.amazon.com/Crazy-Crochet-Hacks-Beginner-Wishes-ebook/dp/B0H87TYJW7?tag=rosiepayne0a-20&utm_source=pinterest&utm_medium=social&utm_campaign=crochet_hacks&amp;utm_content=secondary" target="_blank" rel="noopener">Kindle &rarr;</a>
-        <a href="https://www.amazon.com/Crazy-Crochet-Hacks-Beginner-Wishes/dp/B0H89DZP89?tag=rosiepayne0a-20&utm_source=pinterest&utm_medium=social&utm_campaign=crochet_hacks&amp;utm_content=secondary" target="_blank" rel="noopener">Paperback &rarr;</a>
+        <a href="https://www.amazon.com/Crazy-Crochet-Hacks-Beginner-Wishes-ebook/dp/B0H87TYJW7?tag=rosiepayne0a-20&utm_source=pinterest&utm_medium=social&utm_campaign=crochet_hacks&amp;utm_content=secondary" target="_blank" rel="noopener">Kindle on Amazon</a>
+        <a href="https://www.amazon.com/Crazy-Crochet-Hacks-Beginner-Wishes/dp/B0H89DZP89?tag=rosiepayne0a-20&utm_source=pinterest&utm_medium=social&utm_campaign=crochet_hacks&amp;utm_content=secondary" target="_blank" rel="noopener">Paperback on Amazon</a>
       </div>
       <p class="series">Book 1 of the <strong>Crazy Crochet Hacks</strong> series.</p>
     </div>
@@ -269,7 +268,7 @@
   <footer>
     <p>Every measurement here assumes you have checked your own gauge. Two crocheters working the same pattern with the same yarn will not get the same size, and the swatch is the only thing that tells you which one you are.</p>
     <p>As an Amazon Associate I earn from qualifying purchases.</p>
-    <p>&copy; Rosie Payne &middot; Last checked October 2026 &middot; <a href="/about/">About these charts</a></p>
+    <p class="fineprint"><span>&copy; Rosie Payne</span> <span>Last checked October 2026</span> <a href="/about/">About these charts</a></p>
   </footer>
 
 </div>

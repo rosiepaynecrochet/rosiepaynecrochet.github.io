@@ -13,7 +13,9 @@ Output goes to out/, which mirrors what is deployed:
 """
 
 import pathlib
+import re
 import shutil
+from html import escape as html_escape
 
 ROOT = pathlib.Path(__file__).parent
 PAGEDIR = ROOT / "pages"
@@ -21,7 +23,9 @@ OUT = ROOT / "out"
 
 SITE = "https://rosiepaynecrochet.com"
 AUTHOR = "Rosie Payne"
-EYEBROW = "Rosie Payne · Crochet Reference"
+# The masthead carries no label line above the h1: the wordmark already sits
+# in the nav directly above it, and a second "Rosie Payne" there was repetition
+# dressed up as design.
 PINTEREST_VERIFY = "af0567b0329eaeff9bea56c7104d49d6"
 UPDATED = "October 2026"
 PUBLISHED = "2026-10-21"
@@ -131,9 +135,8 @@ FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-    "family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400"
-    "&family=Karla:wght@400;500;700"
-    "&family=IBM+Plex+Mono:wght@400;500&display=swap\">"
+    "family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1"
+    "&family=Instrument+Sans:wght@400..600&display=swap\">"
 )
 
 BOOKCARD = f"""  <section class="bookcard">
@@ -142,8 +145,8 @@ BOOKCARD = f"""  <section class="bookcard">
       <h2>Where the rest of it lives</h2>
       <p>These charts cover the numbers. The book covers what goes wrong between casting on and finishing — 100+ fixes, including the full gauge and yardage tables these pages were pulled from.</p>
       <div class="bookcard-links">
-        <a href="https://www.amazon.com/Crazy-Crochet-Hacks-Beginner-Wishes-ebook/dp/B0H87TYJW7?{AMZ}&amp;utm_content=secondary" target="_blank" rel="noopener">Kindle &rarr;</a>
-        <a href="https://www.amazon.com/Crazy-Crochet-Hacks-Beginner-Wishes/dp/B0H89DZP89?{AMZ}&amp;utm_content=secondary" target="_blank" rel="noopener">Paperback &rarr;</a>
+        <a href="https://www.amazon.com/Crazy-Crochet-Hacks-Beginner-Wishes-ebook/dp/B0H87TYJW7?{AMZ}&amp;utm_content=secondary" target="_blank" rel="noopener">Kindle on Amazon</a>
+        <a href="https://www.amazon.com/Crazy-Crochet-Hacks-Beginner-Wishes/dp/B0H89DZP89?{AMZ}&amp;utm_content=secondary" target="_blank" rel="noopener">Paperback on Amazon</a>
       </div>
       <p class="series">Book 1 of the <strong>Crazy Crochet Hacks</strong> series.</p>
     </div>
@@ -152,7 +155,7 @@ BOOKCARD = f"""  <section class="bookcard">
 FOOTER = f"""  <footer>
     <p>Every measurement here assumes you have checked your own gauge. Two crocheters working the same pattern with the same yarn will not get the same size, and the swatch is the only thing that tells you which one you are.</p>
     <p>As an Amazon Associate I earn from qualifying purchases.</p>
-    <p>&copy; {AUTHOR} &middot; Last checked {UPDATED} &middot; <a href="/about/">About these charts</a></p>
+    <p class="fineprint"><span>&copy; {AUTHOR}</span> <span>Last checked {UPDATED}</span> <a href="/about/">About these charts</a></p>
   </footer>"""
 
 
@@ -198,19 +201,76 @@ def related_html(current):
     )
 
 
+def label_table_cells(html):
+    """Copy each table's column headings onto its body cells as data-label.
+
+    On a phone the stylesheet turns every table row into a card, and a cell
+    showing "B-1" on its own means nothing without the "US" heading that sat
+    above it. The CSS reads these attributes to print the label beside the
+    value, so a four-column chart stays readable at 360px without the
+    sideways scroll it used to need.
+
+    Done here rather than by hand in the fragments so it stays true for any
+    table added later, and so the fragments remain plain semantic HTML.
+    """
+    tag = re.compile(r"<(t[dh])\b([^>]*)>", re.I)
+
+    def do_table(m):
+        table = m.group(0)
+
+        head = re.search(r"<thead\b.*?</thead>", table, re.I | re.S)
+        if not head:
+            return table
+        headings = [
+            re.sub(r"<[^>]+>", "", c).replace("&nbsp;", " ").strip()
+            for c in re.findall(r"<th\b[^>]*>(.*?)</th>", head.group(0), re.I | re.S)
+        ]
+        if not headings:
+            return table
+
+        body = re.search(r"<tbody\b.*?</tbody>", table, re.I | re.S)
+        if not body:
+            return table
+
+        def do_row(rm):
+            row = rm.group(0)
+            col = iter(range(len(headings)))
+
+            def do_cell(cm):
+                name, attrs = cm.group(1), cm.group(2)
+                if name.lower() != "td" or "data-label" in attrs.lower():
+                    return cm.group(0)
+                try:
+                    i = next(col)
+                except StopIteration:
+                    return cm.group(0)
+                heading = headings[i]
+                if not heading or i == 0:
+                    return cm.group(0)
+                esc = html_escape(heading)
+                return f"<td{attrs} data-label=\"{esc}\">"
+
+            return tag.sub(do_cell, row)
+
+        newbody = re.sub(r"<tr\b.*?</tr>", do_row, body.group(0), flags=re.I | re.S)
+        return table.replace(body.group(0), newbody)
+
+    return re.sub(r"<table\b.*?</table>", do_table, html, flags=re.I | re.S)
+
+
 def render(page, book_full):
     slug = page["slug"]
     canonical = f"{SITE}{url_for(slug)}"
     title = page["title"]
     desc = page["desc"]
     content = (PAGEDIR / page["file"]).read_text(encoding="utf-8").rstrip()
+    content = label_table_cells(content)
 
     book = book_full if page["book"] == "full" else BOOKCARD
     related = "" if page.get("no_related") else related_html(slug)
 
     blocks = [nav_html(slug),
               '  <header class="masthead">\n'
-              f'    <div class="eyebrow">{EYEBROW}</div>\n'
               f'    <h1>{page["h1"]}</h1>\n'
               f'    <p class="standfirst">{page["standfirst"]}</p>\n'
               "  </header>",

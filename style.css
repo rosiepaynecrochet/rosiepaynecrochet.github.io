@@ -1,93 +1,127 @@
 /* ==========================================================================
    Rosie Payne · Crochet Reference
-   Shared design system. One source of truth for every page.
-   Layout: single reading column, reference-card feel. The chart is the hero;
-   the book offer sits after the value is delivered, never before it.
+   One stylesheet, every page.
+
+   Concept: the haberdashery reference card — the stamped card that comes with
+   a good set of hooks. Precise, printed, tactile.
+
+   The measurement is the hero. A reader arrives mid-project wanting one
+   number, so the number carries the typographic weight and the prose stays
+   quiet around it.
+
+   Three rules this file keeps:
+     1. Surfaces lift off the page. Nothing sinks into it.
+     2. No tracked all-caps labels. Weight and size do that work.
+     3. On a phone every table row becomes a card, never a sideways scroll.
    ========================================================================== */
 
 :root {
-  --paper:      #faf6f0;
-  --paper-sunk: #f2ebe1;
-  --ink:        #2a211c;
-  --ink-soft:   #6f6054;
-  --rule:       #e2d8ca;
-  --clay:       #b2502c;
-  --sage:       #6c7d66;
+  /* paper and ink */
+  --paper:      #f2eade;
+  --card:       #fbf7f0;   /* lighter than paper, so cards lift */
+  --card-deep:  #ece2d3;   /* for the rare surface that should recede */
+  --ink:        #2a1e16;
+  --ink-soft:   #6e5f52;
+  --rule:       #ddd0be;
+  --rule-soft:  #e7dccd;
 
-  --display: "Newsreader", Georgia, "Times New Roman", serif;
-  --body:    "Karla", "Helvetica Neue", Arial, sans-serif;
-  --figure:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* pigment, not pastel: madder root and a grey-green */
+  --madder:     #9e4426;
+  --madder-lit: #b85631;
+  --sage:       #55664c;
+
+  --lift-1: 0 1px 2px rgba(42, 30, 22, 0.04), 0 2px 8px -2px rgba(42, 30, 22, 0.06);
+  --lift-2: 0 2px 4px rgba(42, 30, 22, 0.05), 0 12px 28px -12px rgba(42, 30, 22, 0.22);
+
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body:    "Instrument Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  --measure: 64ch;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper:      #1b1613;
-    --paper-sunk: #241d19;
-    --ink:        #ece2d6;
-    --ink-soft:   #a39385;
-    --rule:       #3a302a;
-    --clay:       #d97c52;
-    --sage:       #93a48c;
+    --paper:      #17120e;
+    --card:       #211a14;
+    --card-deep:  #120e0a;
+    --ink:        #f0e7db;
+    --ink-soft:   #a99685;
+    --rule:       #3a2f26;
+    --rule-soft:  #2e241d;
+    --madder:     #e08456;
+    --madder-lit: #ea9169;
+    --sage:       #9bae8b;
+    --lift-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+    --lift-2: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 28px -12px rgba(0, 0, 0, 0.7);
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --paper:      #1b1613;
-  --paper-sunk: #241d19;
-  --ink:        #ece2d6;
-  --ink-soft:   #a39385;
-  --rule:       #3a302a;
-  --clay:       #d97c52;
-  --sage:       #93a48c;
+  --paper:      #17120e;
+  --card:       #211a14;
+  --card-deep:  #120e0a;
+  --ink:        #f0e7db;
+  --ink-soft:   #a99685;
+  --rule:       #3a2f26;
+  --rule-soft:  #2e241d;
+  --madder:     #e08456;
+  --madder-lit: #ea9169;
+  --sage:       #9bae8b;
+  --lift-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+  --lift-2: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 28px -12px rgba(0, 0, 0, 0.7);
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
 
+html { -webkit-text-size-adjust: 100%; }
+
 body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--body);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .wrap {
-  max-width: 44rem;
+  max-width: 46rem;
   margin: 0 auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 1.6rem 3.5rem;
+  padding-left: max(18px, env(safe-area-inset-left, 0px));
+  padding-right: max(18px, env(safe-area-inset-right, 0px));
+  padding-block: 1.5rem 4rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 3.4rem;
 }
 
-/* ---------- site navigation ---------- */
+/* ---------- navigation ---------- */
 
 .sitenav {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.5rem 1.4rem;
-  padding-bottom: 1rem;
+  gap: 0.5rem 1.5rem;
+  padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--rule);
-  margin-bottom: -1.4rem;
+  margin-bottom: -1.8rem;
 }
 
 .sitenav .brand {
-  font-family: var(--body);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--clay);
+  font-family: var(--display);
+  font-size: 1.12rem;
+  font-variation-settings: "opsz" 24, "wght" 600, "SOFT" 40, "WONK" 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
   text-decoration: none;
   margin-right: auto;
 }
+
+.sitenav .brand:hover { color: var(--madder); }
 
 .sitenav ul {
   list-style: none;
@@ -95,555 +129,310 @@ body {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.2rem;
+  gap: 0.3rem 1.15rem;
 }
 
 .sitenav a {
-  font-size: 0.84rem;
+  font-size: 0.9rem;
   color: var(--ink-soft);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 1px;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid transparent;
 }
 
 .sitenav a:hover { color: var(--ink); border-bottom-color: var(--rule); }
 
 .sitenav a[aria-current="page"] {
   color: var(--ink);
-  border-bottom-color: var(--clay);
+  border-bottom-color: var(--madder);
 }
 
-/* ---------- header ---------- */
+/* ---------- masthead ---------- */
 
-.masthead { display: flex; flex-direction: column; gap: 0.85rem; }
+.masthead { display: flex; flex-direction: column; gap: 1rem; }
 
+/* Kept for markup compatibility; set as a small sage note, not a tracked label. */
 .eyebrow {
-  font-family: var(--body);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--clay);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--sage);
 }
 
 h1 {
   font-family: var(--display);
-  font-weight: 500;
-  font-size: clamp(2rem, 7vw, 2.9rem);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  font-size: clamp(2.3rem, 8.4vw, 3.3rem);
+  font-variation-settings: "opsz" 120, "wght" 500, "SOFT" 24, "WONK" 1;
+  line-height: 1.04;
+  letter-spacing: -0.028em;
   margin: 0;
+  max-width: 24ch;
   text-wrap: balance;
 }
 
 .standfirst {
   font-family: var(--display);
-  font-size: clamp(1.05rem, 3.2vw, 1.2rem);
-  line-height: 1.55;
+  font-size: clamp(1.14rem, 3.4vw, 1.34rem);
+  font-variation-settings: "opsz" 32, "wght" 350, "SOFT" 50, "WONK" 0;
+  line-height: 1.5;
   color: var(--ink-soft);
   margin: 0;
-  max-width: 34rem;
+  max-width: 48ch;
 }
 
-/* ---------- sections ---------- */
+/* ---------- sections and base text ---------- */
 
-section { display: flex; flex-direction: column; gap: 1.1rem; }
+section { display: flex; flex-direction: column; gap: 1.15rem; }
 
 h2 {
   font-family: var(--display);
-  font-weight: 600;
-  font-size: clamp(1.3rem, 4.5vw, 1.6rem);
-  line-height: 1.2;
+  font-size: clamp(1.5rem, 4.8vw, 1.85rem);
+  font-variation-settings: "opsz" 48, "wght" 500, "SOFT" 30, "WONK" 1;
+  line-height: 1.15;
+  letter-spacing: -0.018em;
   margin: 0;
+  max-width: 30ch;
   text-wrap: balance;
 }
 
 h3 {
-  font-family: var(--body);
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+  font-family: var(--display);
+  font-size: 1.16rem;
+  font-variation-settings: "opsz" 24, "wght" 600, "SOFT" 40, "WONK" 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
   margin: 0;
+  max-width: 34ch;
 }
 
-p { margin: 0; max-width: 36rem; }
+p { margin: 0; max-width: var(--measure); }
 
-a { color: var(--clay); }
+strong { font-weight: 600; }
+
+a {
+  color: var(--madder);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover { color: var(--madder-lit); }
 
 .divider { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 
-ul.plain {
+ul.plain, .steps {
   margin: 0;
-  padding-left: 1.4rem;
+  padding-left: 1.3rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  max-width: 36rem;
+  gap: 0.7rem;
+  max-width: var(--measure);
 }
 
-/* ---------- callout / gauge formula ---------- */
+.steps li, ul.plain li { padding-left: 0.15rem; }
 
-.gauge {
-  background: var(--paper-sunk);
-  border-left: 3px solid var(--clay);
-  padding: 1.4rem 1.3rem;
+::marker { color: var(--madder); }
+
+/* ---------- callouts ---------- */
+
+/* The key insight on a page: raised card, madder edge. */
+.gauge, .warn, .example {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-left: 4px solid var(--madder);
+  border-radius: 2px;
+  box-shadow: var(--lift-1);
+  padding: 1.45rem 1.4rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.95rem;
 }
 
-.steps {
-  margin: 0;
-  padding-left: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+/* Where getting it wrong ruins the project: same card, sage edge. */
+.warn { border-left-color: var(--sage); }
+
+/* A worked example is evidence, so it sits quieter: hairline, no colour edge. */
+.example {
+  border-left: 1px solid var(--rule-soft);
+  box-shadow: none;
+  background: none;
 }
 
-.steps li { padding-left: 0.2rem; }
-
+/* Formulas: tabular figures, recessed slab. */
 .eq {
-  font-family: var(--figure);
-  font-size: 0.86rem;
-  line-height: 1.7;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  padding: 0.9rem 1rem;
+  font-family: var(--body);
+  font-size: 0.97rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.75;
+  background: var(--card-deep);
+  border-radius: 2px;
+  padding: 0.95rem 1.05rem;
   overflow-x: auto;
   white-space: nowrap;
 }
 
-.eq span { color: var(--clay); }
+.eq span { color: var(--madder); font-weight: 600; }
+.example .eq { background: var(--card-deep); }
 
-/* A warning callout: used where getting it wrong ruins the project. */
-.warn {
-  background: var(--paper-sunk);
-  border-left: 3px solid var(--sage);
-  padding: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
+/* ---------- tables: the heart of the site ---------- */
 
-/* ---------- tables ---------- */
-
-.scroller { overflow-x: auto; border-block: 1px solid var(--rule); }
+.scroller { overflow: visible; }
 
 table {
   width: 100%;
-  min-width: 32rem;
   border-collapse: collapse;
-  font-size: 0.93rem;
-}
-
-caption { text-align: left; padding-bottom: 0.7rem; color: var(--ink-soft); font-size: 0.88rem; }
-
-th {
   text-align: left;
-  font-family: var(--body);
-  font-weight: 700;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+}
+
+caption {
+  text-align: left;
+  padding-bottom: 0.9rem;
   color: var(--ink-soft);
-  padding: 0.75rem 0.9rem 0.75rem 0;
-  border-bottom: 1px solid var(--rule);
-  vertical-align: bottom;
+  font-size: 0.94rem;
+  max-width: var(--measure);
 }
 
-td {
-  padding: 0.8rem 0.9rem 0.8rem 0;
-  border-bottom: 1px solid var(--rule);
-  vertical-align: top;
+/* --- phone: every row is a card --- */
+
+@media (max-width: 47.99rem) {
+  table, tbody, tr, td { display: block; }
+  thead { display: none; }
+  caption { display: block; }
+
+  tbody { display: flex; flex-direction: column; gap: 0.55rem; }
+
+  /* The measurement and its designations sit on one line, the explanation
+     below it. A reader scanning for one hook size should not have to scroll
+     past a tall card for every size they are not looking for. */
+  tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15rem 1.35rem;
+    background: var(--card);
+    border: 1px solid var(--rule-soft);
+    border-left: 4px solid var(--rule);
+    border-radius: 2px;
+    box-shadow: var(--lift-1);
+    padding: 0.8rem 1rem 0.9rem;
+  }
+
+  /* the number the reader came for */
+  td:first-child {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    font-variation-settings: "opsz" 40, "wght" 500, "SOFT" 28, "WONK" 0;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-right: auto;
+  }
+
+  /* the designations, as stamped pairs */
+  td:not(:first-child):not(.note) {
+    font-size: 1rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  td:not(:first-child):not(.note)::before {
+    content: attr(data-label) " ";
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+
+  td.note {
+    flex: 1 0 100%;
+    margin-top: 0.5rem;
+    color: var(--ink-soft);
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+
+  tr.flag { border-left-color: var(--madder); }
 }
 
-tbody tr:last-child td { border-bottom: 0; }
+/* --- wider screens: a proper table --- */
 
-td:first-child { font-weight: 500; white-space: nowrap; padding-right: 1.2rem; }
+@media (min-width: 48rem) {
+  th {
+    font-family: var(--body);
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding: 0 1.1rem 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: bottom;
+  }
 
-.size {
-  font-family: var(--figure);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-  padding-right: 1.2rem;
+  td {
+    padding: 0.85rem 1.1rem 0.85rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: baseline;
+  }
+
+  tbody tr:last-child td { border-bottom: 0; }
+
+  td:first-child {
+    font-family: var(--display);
+    font-size: 1.32rem;
+    font-variation-settings: "opsz" 32, "wght" 500, "SOFT" 28, "WONK" 0;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.015em;
+    white-space: nowrap;
+    padding-right: 1.6rem;
+  }
+
+  td:not(:first-child) { font-variant-numeric: tabular-nums; }
+
+  .note {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-variant-numeric: normal;
+  }
+
+  /* A row worth lingering on: marked at the edge, not flooded with colour. */
+  tr.flag td { background: var(--card); }
+  tr.flag td:first-child {
+    box-shadow: inset 3px 0 0 var(--madder);
+    padding-left: 0.85rem;
+  }
 }
 
-.note { color: var(--ink-soft); font-size: 0.88rem; min-width: 0; }
-
-/* A row the reader should linger on — the one that causes ruined projects. */
-tr.flag td { background: var(--paper-sunk); }
+.size { white-space: nowrap; }
 
 /* ---------- key-number grid ---------- */
 
 .rules {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 1.5rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+  gap: 1.7rem 2.2rem;
 }
 
-.rule-item { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
-
-.rule-item .num {
-  font-family: var(--figure);
-  font-variant-numeric: tabular-nums;
-  font-size: 1.05rem;
-  color: var(--clay);
-}
-
-.rule-item p { font-size: 0.9rem; color: var(--ink-soft); }
-
-/* ---------- worked example ---------- */
-
-.example {
-  border: 1px solid var(--rule);
-  padding: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.example .eq { background: var(--paper-sunk); }
-
-/* ---------- calculators ---------- */
-
-.calc {
-  border: 1px solid var(--rule);
-  padding: 1.4rem 1.3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.calc-intro { display: flex; flex-direction: column; gap: 0.6rem; }
-
-.unit-toggle { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-
-.unit-toggle .seg {
-  display: inline-flex;
-  border: 1px solid var(--rule);
-}
-
-.unit-toggle button {
-  font-family: var(--body);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: none;
-  border: 0;
-  color: var(--ink-soft);
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-}
-
-.unit-toggle button[aria-pressed="true"] {
-  background: var(--clay);
-  color: var(--paper);
-}
-
-.calc-group { display: flex; flex-direction: column; gap: 0.7rem; }
-
-.calc-group > h3 {
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: var(--sage);
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.fields {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: 1rem;
-}
-
-.field { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
-
-.field label {
-  font-family: var(--body);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.field input {
-  font-family: var(--figure);
-  font-size: 1rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink);
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  padding: 0.6rem 0.7rem;
-  width: 100%;
-  min-width: 0;
-}
-
-.field input:focus-visible { outline: 2px solid var(--clay); outline-offset: 1px; }
-
-.field .hint { font-size: 0.78rem; color: var(--ink-soft); }
-
-.calc-out {
-  background: var(--paper-sunk);
-  border-left: 3px solid var(--clay);
-  padding: 1.1rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.out-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.3rem 1rem;
-}
-
-.out-row .k {
-  font-family: var(--body);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.out-row .v {
-  font-family: var(--figure);
-  font-variant-numeric: tabular-nums;
-  font-size: 1.25rem;
-  color: var(--clay);
-}
-
-.out-row.minor .v { font-size: 0.95rem; color: var(--ink); }
-
-.calc-note { font-size: 0.86rem; color: var(--ink-soft); }
-
-/* ---------- author note ---------- */
-
-.why {
-  background: var(--paper-sunk);
-  padding: 1.6rem 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-
-.why p { font-family: var(--display); font-size: 1.02rem; line-height: 1.6; }
-
-.signoff {
-  font-family: var(--body);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--clay);
-}
-
-/* ---------- related pages ---------- */
-
-.related { border-top: 1px solid var(--rule); padding-top: 1.6rem; }
-
-.related-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-  gap: 1rem;
-}
-
-.related-grid a {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: 1.1rem;
-  background: var(--paper-sunk);
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid transparent;
-  transition: border-color 140ms ease;
-  min-width: 0;
-}
-
-.related-grid a:hover, .related-grid a:focus-visible { border-color: var(--clay); }
-
-.related-grid .t { font-family: var(--display); font-size: 1.05rem; font-weight: 500; line-height: 1.3; }
-.related-grid .d { font-size: 0.86rem; color: var(--ink-soft); }
-
-/* ---------- book: full treatment ---------- */
-
-.book { border-top: 2px solid var(--ink); padding-top: 2rem; }
-
-.book-body {
-  display: grid;
-  grid-template-columns: 13rem 1fr;
-  gap: 1.8rem;
-  align-items: start;
-}
-
-@media (max-width: 34rem) {
-  .book-body { grid-template-columns: 1fr; gap: 1.4rem; }
-  .cover { max-width: 11rem; }
-}
-
-.cover {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid var(--rule);
-  box-shadow: 0 10px 24px -14px rgba(42, 33, 28, 0.55);
-}
-
-.book-copy { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
-
-.formats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-  gap: 1rem;
-  margin-top: 0.3rem;
-}
-
-.format {
+.rule-item {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
-  padding: 1.2rem;
-  background: var(--paper-sunk);
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid transparent;
-  transition: border-color 140ms ease, transform 140ms ease;
   min-width: 0;
+  padding-top: 0.9rem;
+  border-top: 2px solid var(--rule);
 }
 
-.format:hover, .format:focus-visible { border-color: var(--clay); transform: translateY(-2px); }
-
-.format .kind {
-  font-family: var(--body);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-
-.format .name { font-family: var(--display); font-size: 1.15rem; font-weight: 500; line-height: 1.25; }
-
-.format .go { font-size: 0.86rem; color: var(--clay); font-weight: 500; }
-
-@media (prefers-reduced-motion: reduce) {
-  .format { transition: none; }
-  .format:hover, .format:focus-visible { transform: none; }
-}
-
-:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
-
-/* ---------- book: compact card for secondary pages ---------- */
-
-.bookcard {
-  border-top: 2px solid var(--ink);
-  padding-top: 1.8rem;
-  display: grid;
-  grid-template-columns: 8rem 1fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.bookcard img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid var(--rule);
-  box-shadow: 0 8px 20px -12px rgba(42, 33, 28, 0.5);
-}
-
-.bookcard-copy { display: flex; flex-direction: column; gap: 0.7rem; min-width: 0; }
-
-.bookcard-copy p { font-size: 0.95rem; }
-
-.bookcard-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; margin-top: 0.2rem; }
-
-.bookcard-links a { color: var(--clay); font-weight: 500; font-size: 0.9rem; text-decoration: none; }
-.bookcard-links a:hover { text-decoration: underline; }
-
-@media (max-width: 30rem) {
-  .bookcard { grid-template-columns: 6rem 1fr; gap: 1.1rem; }
-}
-
-/* ---------- footer ---------- */
-
-footer {
-  border-top: 1px solid var(--rule);
-  padding-top: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  font-size: 0.82rem;
-  color: var(--ink-soft);
-}
-
-footer p { max-width: 38rem; }
-
-.series {
-  font-size: 0.86rem;
-  color: var(--ink-soft);
-  padding-top: 0.4rem;
-  border-top: 1px solid var(--rule);
-  margin-top: 0.3rem;
-}
-
-/* ---------- book two: secondary weight, deliberately quieter than book one ---------- */
-
-.next {
-  border-top: 1px solid var(--rule);
-  padding-top: 1.6rem;
-  display: grid;
-  grid-template-columns: 6.5rem 1fr;
-  gap: 1.2rem;
-  align-items: start;
-}
-
-.next img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid var(--rule);
-  box-shadow: 0 6px 16px -10px rgba(42, 33, 28, 0.5);
-}
-
-.next-copy { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
-
-.next-copy .label {
-  font-family: var(--body);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--sage);
-}
-
-.next-copy .t {
+.rule-item .num {
   font-family: var(--display);
-  font-size: 1.05rem;
-  font-weight: 500;
-  line-height: 1.3;
+  font-size: 1.22rem;
+  font-variation-settings: "opsz" 28, "wght" 600, "SOFT" 28, "WONK" 0;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.012em;
+  color: var(--madder);
 }
 
-.next-copy p { font-size: 0.9rem; color: var(--ink-soft); }
+.rule-item h3 { font-size: 1.05rem; }
+.rule-item p { font-size: 0.96rem; color: var(--ink-soft); }
 
-.next-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; margin-top: 0.15rem; }
-
-.next-links a { color: var(--clay); font-weight: 500; font-size: 0.88rem; text-decoration: none; }
-.next-links a:hover { text-decoration: underline; }
-
-@media (max-width: 30rem) {
-  .next { grid-template-columns: 5rem 1fr; gap: 1rem; }
-}
-
-/* ---------- chart head + print button ---------- */
+/* ---------- chart heading and print button ---------- */
 
 .chart-head {
   display: flex;
@@ -655,38 +444,452 @@ footer p { max-width: 38rem; }
 
 .print-btn {
   font-family: var(--body);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--clay);
-  background: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--card);
   border: 1px solid var(--rule);
-  padding: 0.45rem 0.8rem;
+  border-radius: 2px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  box-shadow: var(--lift-1);
+}
+
+.print-btn:hover { border-color: var(--madder); color: var(--madder); }
+
+/* ---------- calculators ---------- */
+
+.calc {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  box-shadow: var(--lift-1);
+  padding: 1.5rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.calc-intro { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.unit-toggle { display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; }
+
+.unit-toggle .k { font-size: 0.9rem; color: var(--ink-soft); }
+
+.unit-toggle .seg {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.unit-toggle button {
+  font-family: var(--body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  background: none;
+  border: 0;
+  color: var(--ink-soft);
+  padding: 0.4rem 0.9rem;
   cursor: pointer;
 }
 
-.print-btn:hover { border-color: var(--clay); }
+.unit-toggle button:hover { color: var(--ink); }
+
+.unit-toggle button[aria-pressed="true"] {
+  background: var(--madder);
+  color: #fbf7f0;
+}
+
+.calc-group { display: flex; flex-direction: column; gap: 0.85rem; }
+
+.calc-group > h3 {
+  font-family: var(--display);
+  font-size: 1.04rem;
+  font-variation-settings: "opsz" 20, "wght" 600, "SOFT" 40, "WONK" 0;
+  color: var(--sage);
+  max-width: none;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1.1rem;
+}
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
+
+.field label {
+  font-family: var(--body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.field input {
+  font-family: var(--display);
+  font-size: 1.22rem;
+  font-variation-settings: "opsz" 24, "wght" 500, "SOFT" 28, "WONK" 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.55rem 0.7rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.field input:hover { border-color: var(--ink-soft); }
+.field input:focus-visible { outline: 2px solid var(--madder); outline-offset: 1px; }
+
+.field .hint { font-size: 0.86rem; color: var(--ink-soft); }
+
+/* The answer. This is what the calculator is for, so it gets the weight. */
+.calc-out {
+  background: var(--card-deep);
+  border-left: 4px solid var(--madder);
+  border-radius: 2px;
+  padding: 1.25rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.out-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+}
+
+.out-row .k { font-size: 0.96rem; color: var(--ink-soft); }
+
+.out-row .v {
+  font-family: var(--display);
+  font-size: 1.62rem;
+  font-variation-settings: "opsz" 40, "wght" 500, "SOFT" 28, "WONK" 0;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--madder);
+}
+
+.out-row.minor .v { font-size: 1.14rem; color: var(--ink); }
+
+.calc-note { font-size: 0.94rem; color: var(--ink-soft); }
+
+/* ---------- author note ---------- */
+
+.why {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  box-shadow: var(--lift-1);
+  padding: 1.7rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.why h3 { font-size: 1.2rem; }
+
+.why p {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-variation-settings: "opsz" 20, "wght" 350, "SOFT" 50, "WONK" 0;
+  line-height: 1.6;
+  max-width: 58ch;
+}
+
+.signoff {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-variation-settings: "opsz" 24, "wght" 500, "SOFT" 60, "WONK" 1;
+  color: var(--madder);
+}
+
+/* ---------- related pages ---------- */
+
+.related { border-top: 1px solid var(--rule); padding-top: 1.8rem; }
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+
+.related-grid a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.15rem;
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  box-shadow: var(--lift-1);
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.related-grid a:hover, .related-grid a:focus-visible {
+  border-color: var(--madder);
+  box-shadow: var(--lift-2);
+}
+
+.related-grid .t {
+  font-family: var(--display);
+  font-size: 1.12rem;
+  font-variation-settings: "opsz" 22, "wght" 550, "SOFT" 35, "WONK" 0;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+}
+
+.related-grid .d { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.5; }
+
+/* ---------- book: full treatment, home page ---------- */
+
+.book { border-top: 2px solid var(--ink); padding-top: 2.1rem; }
+
+.book-body {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.cover, .bookcard img, .next img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  box-shadow: var(--lift-2);
+}
+
+.book-copy { display: flex; flex-direction: column; gap: 1.05rem; min-width: 0; }
+
+.formats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.format {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  box-shadow: var(--lift-1);
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.format:hover, .format:focus-visible {
+  border-color: var(--madder);
+  box-shadow: var(--lift-2);
+}
+
+.format .kind { font-size: 0.9rem; color: var(--sage); font-weight: 500; }
+
+.format .name {
+  font-family: var(--display);
+  font-size: 1.24rem;
+  font-variation-settings: "opsz" 26, "wght" 550, "SOFT" 35, "WONK" 0;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.format .go { font-size: 0.92rem; color: var(--madder); font-weight: 500; }
+
+@media (max-width: 34rem) {
+  .book-body { grid-template-columns: 1fr; gap: 1.5rem; }
+  .cover { max-width: 11rem; }
+}
+
+/* ---------- book: compact card, secondary pages ---------- */
+
+.bookcard {
+  border-top: 2px solid var(--ink);
+  padding-top: 1.9rem;
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.bookcard-copy { display: flex; flex-direction: column; gap: 0.8rem; min-width: 0; }
+.bookcard-copy p { font-size: 1rem; }
+
+.bookcard-links, .next-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  margin-top: 0.25rem;
+}
+
+.bookcard-links a, .next-links a {
+  color: var(--madder);
+  font-weight: 500;
+  font-size: 0.97rem;
+  text-decoration: none;
+  border-bottom: 1.5px solid transparent;
+}
+
+.bookcard-links a:hover, .next-links a:hover { border-bottom-color: var(--madder); }
+
+@media (max-width: 30rem) {
+  .bookcard { grid-template-columns: 6.5rem 1fr; gap: 1.2rem; }
+}
+
+/* ---------- book two: deliberately quieter than book one ---------- */
+
+.next {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.7rem;
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.3rem;
+  align-items: start;
+}
+
+.next-copy { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.next-copy .label { font-size: 0.9rem; color: var(--sage); font-weight: 500; }
+
+.next-copy .t {
+  font-family: var(--display);
+  font-size: 1.14rem;
+  font-variation-settings: "opsz" 22, "wght" 550, "SOFT" 35, "WONK" 0;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+}
+
+.next-copy p { font-size: 0.95rem; color: var(--ink-soft); }
+
+@media (max-width: 30rem) {
+  .next { grid-template-columns: 5.5rem 1fr; gap: 1.1rem; }
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+footer p { max-width: var(--measure); }
+footer a { color: var(--madder); }
+
+.series {
+  font-size: 0.94rem;
+  color: var(--ink-soft);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 0.3rem;
+}
+
+.fineprint {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.3rem;
+  font-size: 0.88rem;
+}
+
+:focus-visible { outline: 2px solid var(--madder); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
 
 /* ---------- print: these are reference charts, people want them on paper ---------- */
 
 @media print {
   :root {
     --paper: #fff;
-    --paper-sunk: #fff;
+    --card: #fff;
+    --card-deep: #fff;
     --ink: #000;
     --ink-soft: #333;
-    --rule: #bbb;
-    --clay: #000;
+    --rule: #999;
+    --rule-soft: #ccc;
+    --madder: #000;
+    --madder-lit: #000;
     --sage: #333;
+    --lift-1: none;
+    --lift-2: none;
   }
-  .wrap { max-width: none; padding-block: 0; gap: 1.4rem; }
+
+  .wrap { max-width: none; padding-block: 0; gap: 1.5rem; }
   .book, .bookcard, .why, .sitenav, .related, .no-print { display: none; }
-  .scroller { overflow: visible; border: 0; }
-  table { min-width: 0; font-size: 10pt; }
-  .gauge, .warn { border-left: 2px solid #000; }
-  .calc-out { border-left: 2px solid #000; }
-  h1 { font-size: 20pt; }
+
+  h1 { font-size: 22pt; }
+  h2 { font-size: 14pt; }
+  body { font-size: 10.5pt; }
+
+  .gauge, .warn, .calc-out { border-left: 2px solid #000; box-shadow: none; }
+  .example, .calc, .related-grid a, .format { box-shadow: none; }
+
+  /* back to a real table, whatever the paper width */
+  .scroller { overflow: visible; }
+  table { display: table; width: 100%; font-size: 9.5pt; }
+  thead { display: table-header-group; }
+  tbody { display: table-row-group; }
+  tr {
+    display: table-row;
+    background: none;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  td, th { display: table-cell; }
+  th {
+    text-align: left;
+    font-weight: 600;
+    padding: 0 0.7rem 0.4rem 0;
+    border-bottom: 1px solid #000;
+  }
+  td {
+    padding: 0.4rem 0.7rem 0.4rem 0;
+    border-bottom: 1px solid #ccc;
+    vertical-align: baseline;
+    margin: 0;
+  }
+  td:first-child {
+    font-family: var(--display);
+    font-size: 11pt;
+    font-weight: 600;
+    white-space: nowrap;
+    margin: 0;
+  }
+  td:not(:first-child):not(.note) { display: table-cell; margin: 0; }
+  td:not(:first-child):not(.note)::before { content: none; }
+  td.note {
+    margin: 0;
+    padding-top: 0.4rem;
+    border-top: 0;
+    font-size: 9pt;
+  }
+  tr.flag td { background: none; font-weight: 600; }
+  tr.flag td:first-child { box-shadow: none; padding-left: 0; }
+
   section { break-inside: avoid; }
   tr { break-inside: avoid; }
+  a { text-decoration: none; color: #000; }
 }
