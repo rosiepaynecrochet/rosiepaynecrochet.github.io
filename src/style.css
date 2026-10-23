@@ -162,8 +162,9 @@ h1 {
   font-family: var(--display);
   font-size: clamp(2.3rem, 8.4vw, 3.3rem);
   font-variation-settings: "opsz" 120, "wght" 500, "SOFT" 24, "WONK" 1;
-  line-height: 1.04;
-  letter-spacing: -0.028em;
+  line-height: 1.06;
+  letter-spacing: -0.016em;
+  word-spacing: 0.02em;
   margin: 0;
   max-width: 24ch;
   text-wrap: balance;
